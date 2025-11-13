@@ -6,6 +6,7 @@ import Home from './component/Home/Home';
 import Productlist from './component/product/Productlist';
 import HorizontalScrollProducts from './component/HorizontalScrollProducts/HorizontalScrollProducts';
 import Handmadeproduct from './component/Handmadeproduct/Handmadeproduct';
+import UserExample from './component/User/UserExample';
 function App() {
   return (
     <div>
@@ -15,6 +16,7 @@ function App() {
       <HorizontalScrollProducts/>
       <Productlist/>
       <Handmadeproduct/>
+      <UserExample/>
     </div>
   )
 }
