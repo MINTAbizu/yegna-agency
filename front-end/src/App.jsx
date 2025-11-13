@@ -7,6 +7,7 @@ import Productlist from './component/product/Productlist';
 import HorizontalScrollProducts from './component/HorizontalScrollProducts/HorizontalScrollProducts';
 import Handmadeproduct from './component/Handmadeproduct/Handmadeproduct';
 import UserExample from './component/User/UserExample';
+import RewardsList from './component/Rewardcard/RewardsList'
 function App() {
   return (
     <div>
@@ -17,6 +18,8 @@ function App() {
       <Productlist/>
       <Handmadeproduct/>
       <UserExample/>
+
+      <RewardsList/>
     </div>
   )
 }
