@@ -1,0 +1,33 @@
+
+.home-container h1 {
+  font-size: 38px;
+  color: black;
+  text-align: center;
+
+}
+
+.home-container p {
+  font-size: 1.2rem;
+}
+
+.btn-primary {
+  background-color: #6f4e37; /* coffee color */
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #54392d;
+  transform: scale(1.05);
+}
+
+/* Responsive text */
+@media (max-width: 768px) {
+  .home-container h1 {
+    font-size: 2rem;
+  }
+
+  .home-container p {
+    font-size: 1rem;
+  }
+}
