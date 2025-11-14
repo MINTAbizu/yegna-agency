@@ -20,6 +20,7 @@ import Login from './pages/Login';
 import KycDashboardWithHeader from './kyc/KycDashboardWithHeader';
 import RecognitionForm from './kyc/RecognitionForm';
 import DashboardLayout from './kyc/DashboardLayout';
+import FullKYCFlow from './kyc/MultiStepKYC';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
 
 
                           <RecognitionForm />
+                          <FullKYCFlow/>
                         </DashboardLayout>
         
           } />
