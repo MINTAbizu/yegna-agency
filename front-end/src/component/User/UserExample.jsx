@@ -26,19 +26,29 @@ const UserExample = () => {
   ];
 
   return (
-    <div 
+<>
+<div>
+  <h1>our user </h1>
+</div>
+ <div 
       style={{ 
         padding: "20px",
         display: "flex",
         flexWrap: "wrap",
         gap: "20px",
-        justifyContent: "center"
+        justifyContent: "center",
+        backgroundColor:'(0 78% 21% / 0.767)',
+        marginTop:'18px'
+
       }}
     >
+      
       {users.map((u, index) => (
         <UserCard user={u} key={index} />
       ))}
     </div>
+</>
+   
   );
 };
 

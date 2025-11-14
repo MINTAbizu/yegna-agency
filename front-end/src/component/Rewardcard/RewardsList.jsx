@@ -1,7 +1,7 @@
 import React from "react";
 import RewardCard from "./RewardCard";
 // import RewardCard from "./RewardCard";
-
+import './RewardCard.css'
 const RewardsList = () => {
   const rewards = [
     {
@@ -99,7 +99,9 @@ const RewardsList = () => {
         gap: "20px",
         gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
         padding: "20px",
+        backgroundColor:''
       }}
+      className="rewardlist"
     >
       {rewards.map((r, i) => (
         <RewardCard reward={r} key={i} />

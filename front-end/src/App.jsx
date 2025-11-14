@@ -16,7 +16,7 @@ function App() {
       <Home/>
       
       <HorizontalScrollProducts/>
-      {/* <Productlist/> */}
+      <Productlist/>
       <Handmadeproduct/>
       <UserExample/>
 

@@ -5,6 +5,7 @@ import product1 from '../../assets/image/test.jpg';
 import product2 from '../../assets/image/test2.jpg';
 // import product3 from '../../assets/image/product3.jpg';
 // import product4 from '../../assets/image/product4.jpg';
+import  './Handmadeproduct.css'
 
 const products = [
   { id: 1, name: 'Product 1', image: product1 },
@@ -51,7 +52,7 @@ function Handmadeproduct() {
   }, []);
 
   return (
-    <div className="horizontal-product-container">
+    <div className="horizontal-products">
                   <h2 className='digitalproducttitle'>Digital product
             Get your product now!  <br />
             </h2> 
