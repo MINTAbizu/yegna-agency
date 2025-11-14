@@ -3,13 +3,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 
-import userroute from "./route/user/user.route.js";
-import booking from "./route/Booking/booking.route.js";
-import menuRoutes from "./route/menu/menu.routes.js";
-import ChapaPayment from "./payment/chaparoute.js";
-import inventoryRoutes from "./route/inventory/inventory.routes.js";
-import orderRoutes from "./route/order/orders.routes.js";
-// import customersRoutes from "./route/customers/customers.routes.js";
+// import userroute from "./route/user/user.route.js";
+
 
 dotenv.config();
 
@@ -21,7 +16,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",        // local development
-      "https://shala22.netlify.app"   // your deployed frontend (NO trailing slash!)
+      // "https://shala22.netlify.app"   // your deployed frontend (NO trailing slash!)
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -37,13 +32,8 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // ✅ Routes
-app.use("/api", userroute);
-app.use("/api", booking);
-app.use("/api/menu", menuRoutes);
-app.use("/api/items", inventoryRoutes);
-app.use("/api/orders", orderRoutes);
-// app.use("/api", customersRoutes);
-app.use("/api", ChapaPayment);
+// app.use("/api", userroute);
+
 
 // ✅ Start server
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
