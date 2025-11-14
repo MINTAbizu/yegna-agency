@@ -9,6 +9,7 @@ import Handmadeproduct from './component/Handmadeproduct/Handmadeproduct';
 import UserExample from './component/User/UserExample';
 import RewardsList from './component/Rewardcard/RewardsList'
 import BrowseAllProducts from './component/BrowseAllProducts/BrowseAllProducts';
+import Footer from './component/footer/Footer';
 function App() {
   return (
     <div>
@@ -22,6 +23,8 @@ function App() {
 
       <RewardsList/>
       <BrowseAllProducts/>
+
+      <Footer/>
     </div>
   )
 }

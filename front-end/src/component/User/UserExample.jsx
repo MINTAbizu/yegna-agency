@@ -1,6 +1,6 @@
 import React from "react";
 import UserCard from "./UserCard";
-
+import './UserCard.css'
 const UserExample = () => {
   const users = [
     {
@@ -12,6 +12,26 @@ const UserExample = () => {
       name: "YeBuna Coffee",
       image: "https://via.placeholder.com/210",
       description: "Finest Ethiopian roasted coffee products."
+    },
+    {
+      name: "Selam Tech",
+      image: "https://via.placeholder.com/220",
+      description: "High-quality electronics & accessories."
+    },
+    {
+      name: "Ethio Fashion",
+      image: "https://via.placeholder.com/230",
+      description: "Modern clothing with Ethiopian cultural touches."
+    },
+    {
+      name: "Selam Tech",
+      image: "https://via.placeholder.com/220",
+      description: "High-quality electronics & accessories."
+    },
+    {
+      name: "Ethio Fashion",
+      image: "https://via.placeholder.com/230",
+      description: "Modern clothing with Ethiopian cultural touches."
     },
     {
       name: "Selam Tech",
@@ -39,8 +59,9 @@ const UserExample = () => {
         justifyContent: "center",
         backgroundColor:'(0 78% 21% / 0.767)',
         marginTop:'18px'
-
+       
       }}
+      className="user"
     >
       
       {users.map((u, index) => (
