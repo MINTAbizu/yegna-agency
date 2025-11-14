@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 
-// import userroute from "./route/user/user.route.js";
+import userroute from "./route/user.route/user.route.js";
 
 
 dotenv.config();
@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // ✅ Routes
-// app.use("/api", userroute);
+app.use("/api", userroute);
 
 
 // ✅ Start server
