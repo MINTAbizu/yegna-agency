@@ -17,6 +17,7 @@ import BrowseAllProducts from './component/BrowseAllProducts/BrowseAllProducts';
 import PromotionCarousel from './component/PromotionCarousel/PromotionCarousel';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import KycDashboardWithHeader from './kyc/KycDashboardWithHeader';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="/rewards" element={<RewardsList />} />
         <Route path="/browse" element={<BrowseAllProducts />} />
         <Route path="/promotion" element={<PromotionCarousel />} />
+        <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} />
       </Routes>
       <Footer />
     </Router>
