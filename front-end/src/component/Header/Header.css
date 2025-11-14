@@ -1,0 +1,95 @@
+.header {
+  position: fixed;
+  background-color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header {
+  position: fixed;  /* fix it to the top */
+  top: 0;           /* stick to top */
+  left: 0;          /* align to left */
+  width: 100%;      /* full width */
+  z-index: 1000;    /* above other content */
+  background-color: #fff; /* background to cover content behind */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 10px 20px;
+}
+
+/* Menu Icon */
+.menu-icon {
+  cursor: pointer;
+  display: block;
+  z-index: 1100;
+}
+
+/* Slide Menu */
+.slide-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  padding: 20px;
+  transition: right 0.3s ease;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  z-index: 1050;
+}
+
+.slide-menu.active {
+  right: 0;
+}
+
+/* Slide Header with Close Icon */
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.slide-logo {
+  width: 100px;
+}
+
+.close-icon {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+/* Menu List */
+.slide-menu ul li {
+  padding: 15px 0;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.slide-menu ul li:hover {
+  color: #007bff;
+}
+
+/* Shop Submenu */
+.shop-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: 15px;
+}
+
+.shop-submenu.active {
+  max-height: 500px;
+}
+
+.shop-submenu li {
+  padding: 10px 0;
+  border: none;
+  font-size: 14px;
+}

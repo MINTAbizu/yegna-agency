@@ -1,33 +1,56 @@
-import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-// import logo from '../../assets/image/core-img/logo.png';
+import React, { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import "./Header.css";
+// import logo from "../../assets/image/core-img/logo.png";
 
-function Header() {
+const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [shopOpen, setShopOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleShop = () => setShopOpen(!shopOpen);
+
   return (
-    <Navbar bg="light" expand="lg" className="shadow-sm">
-      <Container>
-        {/* Logo */}
-        <Navbar.Brand href="#home">
-          {/* <img src={logo} alt="Logo" height="50" />
-           */}
-           <img src="" alt="" />
-        </Navbar.Brand>
+    <header className="header d-flex justify-content-between align-items-center p-3">
+      {/* Logo */}
+      <div className="logo">
+        {/* <img src={logo} alt="Logo" className="img-fluid" /> */}
+      </div>
 
-        {/* Hamburger / Collapse toggle */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      {/* Menu Icon (always visible) */}
+      <div className="menu-icon" onClick={toggleMenu}>
+        {menuOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
+      </div>
 
-        {/* Menu items */}
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#about">About</Nav.Link>
-            <Nav.Link href="#services">Services</Nav.Link>
-            <Nav.Link href="#contact">Contact</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      {/* Slide-in Menu */}
+      <nav className={`slide-menu ${menuOpen ? "active" : ""}`}>
+        <div className="slide-header">
+          {/* <img src={logo} alt="Logo" className="slide-logo" /> */}
+          <FaTimes className="close-icon" onClick={toggleMenu} />
+        </div>
+        <ul className="list-unstyled">
+          <li>Freelancer</li>
+          <li>Club</li>
+
+          {/* Shop with Submenu */}
+          <li onClick={toggleShop} className="shop-parent">
+            Shop
+            <ul className={`shop-submenu ${shopOpen ? "active" : ""}`}>
+              <li>💰 Earn</li>
+              <li>📦 Physical Products</li>
+              <li>💻 Digital Products</li>
+              <li>🧑‍ Freelancer</li>
+              <li>🤝 Affiliate</li>
+            </ul>
+          </li>
+
+          <li>Your Account</li>
+          <li>Sign in</li>
+          <li>Sign up for free</li>
+        </ul>
+      </nav>
+    </header>
   );
-}
+};
 
 export default Header;
