@@ -18,6 +18,8 @@ import PromotionCarousel from './component/PromotionCarousel/PromotionCarousel';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import KycDashboardWithHeader from './kyc/KycDashboardWithHeader';
+import RecognitionForm from './kyc/RecognitionForm';
+import DashboardLayout from './kyc/DashboardLayout';
 
 function App() {
   return (
@@ -46,8 +48,18 @@ function App() {
         <Route path="/browse" element={<BrowseAllProducts />} />
         <Route path="/promotion" element={<PromotionCarousel />} />
         <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} />
+        <Route path="/RecognitionForm" element={
+
+                              <DashboardLayout>
+
+
+                          <RecognitionForm />
+                        </DashboardLayout>
+        
+          } />
       </Routes>
       <Footer />
+       
     </Router>
   );
 }

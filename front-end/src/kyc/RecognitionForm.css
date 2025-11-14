@@ -1,0 +1,12 @@
+/* Center the card on the page */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Optional: spacing between file inputs */
+.form-control[type="file"] {
+  padding: 6px 12px;
+}
