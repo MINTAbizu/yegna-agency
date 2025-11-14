@@ -15,8 +15,8 @@ import UserExample from './component/User/UserExample';
 import RewardsList from './component/Rewardcard/RewardsList';
 import BrowseAllProducts from './component/BrowseAllProducts/BrowseAllProducts';
 import PromotionCarousel from './component/PromotionCarousel/PromotionCarousel';
-import Register from './component/User/Register';
-import Login from './component/User/Login';
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 function App() {
   return (

@@ -11,8 +11,9 @@ import { protect } from '../../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/', createUser);
+router.post('/register', createUser);
 router.post('/login', loginUser);
+
 
 // Protected routes (require JWT)
 router.get('/', protect, getUsers);

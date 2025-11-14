@@ -15,7 +15,7 @@ const Register = () => {
         setLoading(true);
         setMessage('');
         try {
-            const res = await axios.post('/api/users', formData);
+            const res = await axios.post('http://localhost:5000/api/users/register', formData);
             setMessage(res.data.message);
             localStorage.setItem('token', res.data.token);
         } catch (err) {
