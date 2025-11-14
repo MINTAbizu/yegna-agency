@@ -10,6 +10,10 @@ import UserExample from './component/User/UserExample';
 import RewardsList from './component/Rewardcard/RewardsList'
 import BrowseAllProducts from './component/BrowseAllProducts/BrowseAllProducts';
 import Footer from './component/footer/Footer';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import PromotionCarousel from './component/PromotionCarousel/PromotionCarousel';
+
 function App() {
   return (
     <div>
@@ -23,7 +27,7 @@ function App() {
 
       <RewardsList/>
       <BrowseAllProducts/>
-
+      <PromotionCarousel/>
       <Footer/>
     </div>
   )

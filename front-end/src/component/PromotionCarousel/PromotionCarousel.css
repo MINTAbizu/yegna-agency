@@ -1,0 +1,51 @@
+.carousel-container {
+  max-width: 900px;
+  margin: 40px auto;
+  position: relative;
+}
+
+.carousel-slide {
+  position: relative;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.carousel-text {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 15px 25px;
+  border-radius: 8px;
+}
+
+.carousel-text h2 {
+  margin: 0 0 5px 0;
+  font-size: 24px;
+}
+
+.carousel-text p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Dots customization */
+.slick-dots li button:before {
+  color: #4f46e5;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #1f2937;
+}
+.carousel-slide img {
+  width: 100%;
+  height: auto;       /* keep aspect ratio */
+  object-fit: cover;  /* crop/fit image nicely */
+  border-radius: 10px;
+  max-height: 400px;  /* adjust for your promotion banner height */
+}
