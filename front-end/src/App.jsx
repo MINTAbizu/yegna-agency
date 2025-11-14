@@ -8,6 +8,7 @@ import HorizontalScrollProducts from './component/HorizontalScrollProducts/Horiz
 import Handmadeproduct from './component/Handmadeproduct/Handmadeproduct';
 import UserExample from './component/User/UserExample';
 import RewardsList from './component/Rewardcard/RewardsList'
+import BrowseAllProducts from './component/BrowseAllProducts/BrowseAllProducts';
 function App() {
   return (
     <div>
@@ -15,11 +16,12 @@ function App() {
       <Home/>
       
       <HorizontalScrollProducts/>
-      <Productlist/>
+      {/* <Productlist/> */}
       <Handmadeproduct/>
       <UserExample/>
 
       <RewardsList/>
+      <BrowseAllProducts/>
     </div>
   )
 }
