@@ -1,6 +1,6 @@
 import express from "express";
-import upload from "../middleware/upload.js";
-import { submitKYC } from "../controllers/kyc.controller.js";
+import upload from "../../middleware/kyc/middlewareupload.js";
+import { submitKYC } from "../../controller/kyc/kyc.controller.js";
 
 const router = express.Router();
 

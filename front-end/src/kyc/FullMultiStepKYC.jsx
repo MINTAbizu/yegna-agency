@@ -5,14 +5,12 @@ const FullMultiStepKYC = () => {
   const [step, setStep] = useState(1);
 
   const [formData, setFormData] = useState({
-    // Step 1: KYC Profile
     fullName: "",
     dob: "",
     gender: "",
     nationality: "",
     maritalStatus: "",
 
-    // Step 2: ID Recognition
     faceId: null,
     idType: "",
     idFront: null,
@@ -21,7 +19,6 @@ const FullMultiStepKYC = () => {
     issueDate: "",
     expireDate: "",
 
-    // Step 3: Contact Information
     residentialAddress: "",
     phone: "",
     email: "",
@@ -39,10 +36,36 @@ const FullMultiStepKYC = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  // ---------------------------
+  // 🔥 Submit to Backend (FormData)
+  // ---------------------------
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Full KYC Data:", formData);
-    alert("All KYC information submitted successfully!");
+
+    const data = new FormData();
+
+    Object.keys(formData).forEach((key) => {
+      data.append(key, formData[key]);
+    });
+
+    try {
+      const res = await fetch("http://localhost:5000/api/kyc/submit-kyc", {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await res.json();
+      console.log("RESULT:", result);
+
+      if (res.ok) {
+        alert("KYC Submitted Successfully!");
+        setStep(1);
+      } else {
+        alert("Submission failed!");
+      }
+    } catch (error) {
+      alert("Server Error");
+    }
   };
 
   return (
@@ -58,7 +81,9 @@ const FullMultiStepKYC = () => {
           </h2>
 
           <form onSubmit={handleSubmit}>
-            {/* Step 1: KYC Profile */}
+            {/* ---------------------
+                STEP 1 - PROFILE
+            --------------------- */}
             {step === 1 && (
               <>
                 <div className="mb-3">
@@ -122,7 +147,7 @@ const FullMultiStepKYC = () => {
                     className="form-select"
                     required
                   >
-                    <option value="">Select Marital Status</option>
+                    <option value="">Select</option>
                     <option value="Single">Single</option>
                     <option value="Married">Married</option>
                     <option value="Divorced">Divorced</option>
@@ -131,7 +156,9 @@ const FullMultiStepKYC = () => {
               </>
             )}
 
-            {/* Step 2: ID Recognition */}
+            {/* ---------------------
+                STEP 2 - ID UPLOAD
+            --------------------- */}
             {step === 2 && (
               <>
                 <div className="mb-3">
@@ -146,92 +173,93 @@ const FullMultiStepKYC = () => {
                   />
                 </div>
 
-               <div className="d-flex">
-                 <div className="mb-3 p-2">
-                  <label className="form-label">ID Type*</label>
-                  <select
-                    name="idType"
-                    value={formData.idType}
-                    onChange={handleChange}
-                    className="form-select"
-                    required
-                  >
-                    <option value="">Select ID Type</option>
-                    <option value="Drivers Licence">Drivers Licence</option>
-                    <option value="Passport">Passport</option>
-                    <option value="National ID">National ID</option>
-                  </select>
-                </div>
-                  <div className="mb-3 p-2">
-                  <label className="form-label">ID Number*</label>
-                  <input
-                    type="text"
-                    name="idNumber"
-                    value={formData.idNumber}
-                    onChange={handleChange}
-                    className="form-control"
-                    required
-                  />
-                </div>
-               </div>
+                <div className="d-flex">
+                  <div className="mb-3 p-2 w-50">
+                    <label className="form-label">ID Type*</label>
+                    <select
+                      name="idType"
+                      value={formData.idType}
+                      onChange={handleChange}
+                      className="form-select"
+                      required
+                    >
+                      <option value="">Select ID Type</option>
+                      <option value="Drivers Licence">Drivers Licence</option>
+                      <option value="Passport">Passport</option>
+                      <option value="National ID">National ID</option>
+                    </select>
+                  </div>
 
-               <div className="d-flex  ">
-                 <div className="mb-3 p-2">
-                  <label className="form-label">ID Front*</label>
-                  <input
-                    type="file"
-                    name="idFront"
-                    accept="image/*,application/pdf"
-                    onChange={handleChange}
-                    className="form-control"
-                    required
-                  />
+                  <div className="mb-3 p-2 w-50">
+                    <label className="form-label">ID Number*</label>
+                    <input
+                      type="text"
+                      name="idNumber"
+                      value={formData.idNumber}
+                      onChange={handleChange}
+                      className="form-control"
+                      required
+                    />
+                  </div>
                 </div>
 
-                <div className="mb-3 p-2">
-                  <label className="form-label">ID Back*</label>
-                  <input
-                    type="file"
-                    name="idBack"
-                    accept="image/*,application/pdf"
-                    onChange={handleChange}
-                    className="form-control"
-                    required
-                  />
-                </div>
-               </div>
+                <div className="d-flex">
+                  <div className="mb-3 p-2 w-50">
+                    <label className="form-label">ID Front*</label>
+                    <input
+                      type="file"
+                      name="idFront"
+                      accept="image/*,application/pdf"
+                      onChange={handleChange}
+                      className="form-control"
+                      required
+                    />
+                  </div>
 
-              
-
-               <div className="d-flex alignitem-center">
-                 <div className="mb-3 mr-5">
-                  <label className="form-label">Issue Date*</label>
-                  <input
-                    type="date"
-                    name="issueDate"
-                    value={formData.issueDate}
-                    onChange={handleChange}
-                    className="form-control"
-                    required
-                  />
+                  <div className="mb-3 p-2 w-50">
+                    <label className="form-label">ID Back*</label>
+                    <input
+                      type="file"
+                      name="idBack"
+                      accept="image/*,application/pdf"
+                      onChange={handleChange}
+                      className="form-control"
+                      required
+                    />
+                  </div>
                 </div>
 
-                <div className="mb-3 p-2">
-                  <label className="form-label">Expire Date*</label>
-                  <input
-                    type="date"
-                    name="expireDate"
-                    value={formData.expireDate}
-                    onChange={handleChange}
-                    className="form-control"
-                    required
-                  />
+                <div className="d-flex">
+                  <div className="mb-3 p-2 w-50">
+                    <label className="form-label">Issue Date*</label>
+                    <input
+                      type="date"
+                      name="issueDate"
+                      value={formData.issueDate}
+                      onChange={handleChange}
+                      className="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div className="mb-3 p-2 w-50">
+                    <label className="form-label">Expire Date*</label>
+                    <input
+                      type="date"
+                      name="expireDate"
+                      value={formData.expireDate}
+                      onChange={handleChange}
+                      className="form-control"
+                      required
+                    />
+                  </div>
                 </div>
-               </div>
               </>
             )}
 
-            {/* Step 3: Contact Information */}
+            {/* ---------------------
+                STEP 3 - CONTACT
+            --------------------- */}
             {step === 3 && (
               <>
                 <div className="mb-3">
@@ -270,7 +298,9 @@ const FullMultiStepKYC = () => {
               </>
             )}
 
-            {/* Navigation Buttons */}
+            {/* ---------------------
+                BUTTONS
+            --------------------- */}
             <div className="d-flex justify-content-between mt-4">
               {step > 1 && (
                 <button

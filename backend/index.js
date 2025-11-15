@@ -2,10 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
-
+import fs from "fs";
 import userroute from "./route/user.route/user.route.js";
 
-import kycRoutes from "./routes/kyc/kyc.route.js";
+import kycRoutes from "./route/kyc/kyc.route.js";
 dotenv.config();
 
 const app = express();
@@ -33,10 +33,27 @@ mongoose.connect(process.env.MONGO_URI)
 
 // ✅ Routes
 app.use("/api/users", userroute);
-app.use("/uploads", express.static("uploads")); // file access
+// app.use("/uploads", express.static("uploads")); // file access
+
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// app.use("/uploads", express.static(path.join(process.cwd(), "backend/uploads")));
+
+
 
 // Routes
 app.use("/api/kyc", kycRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+const uploadPath = path.join(process.cwd(), "uploads");
 
+// Create folder if it doesn't exist
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+}
 // ✅ Start server
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

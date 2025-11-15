@@ -1,4 +1,4 @@
-import KYC from "../models/kyc.model.js";
+import KYC from "../../model/kyc/kyc.model.js";
 
 export const submitKYC = async (req, res) => {
   try {
@@ -26,6 +26,7 @@ export const submitKYC = async (req, res) => {
       dob,
       gender,
       nationality,
+
       maritalStatus,
       faceId,
       idType,
