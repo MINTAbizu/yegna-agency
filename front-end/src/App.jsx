@@ -7,20 +7,18 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Header from './component/Header/Header';
 import Footer from './component/footer/Footer';
-import Home from './component/Home/Home';
 import Productlist from './component/product/Productlist';
-import HorizontalScrollProducts from './component/HorizontalScrollProducts/HorizontalScrollProducts';
 import Handmadeproduct from './component/Handmadeproduct/Handmadeproduct';
-import UserExample from './component/User/UserExample';
 import RewardsList from './component/Rewardcard/RewardsList';
 import BrowseAllProducts from './component/BrowseAllProducts/BrowseAllProducts';
 import PromotionCarousel from './component/PromotionCarousel/PromotionCarousel';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import KycDashboardWithHeader from './kyc/KycDashboardWithHeader';
-import RecognitionForm from './kyc/RecognitionForm';
-import DashboardLayout from './kyc/DashboardLayout';
-import FullKYCFlow from './kyc/MultiStepKYC';
+// import RecognitionForm from './kyc/RecognitionForm';
+// import DashboardLayout from './kyc/DashboardLayout';
+// import FullKYCFlow from './kyc/MultiStepKYC';
+import Landingpage from './component/Landingpage';
 
 function App() {
   return (
@@ -29,18 +27,13 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
-            <Home/>
-            <HorizontalScrollProducts/>
-            <Productlist/>
-            <Handmadeproduct/>
-            <UserExample/>
-            <RewardsList/>
-            <BrowseAllProducts/>
-            <PromotionCarousel/>
+           
+         
+             <Landingpage/>
           </>
         } />
 
-        <Route path="/register" element={<Register />} />
+        {/* <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
         <Route path="/products" element={<Productlist />} />
@@ -48,17 +41,18 @@ function App() {
         <Route path="/rewards" element={<RewardsList />} />
         <Route path="/browse" element={<BrowseAllProducts />} />
         <Route path="/promotion" element={<PromotionCarousel />} />
-        <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} />
-        <Route path="/RecognitionForm" element={
+        <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} /> */}
+        {/* <Route path="/RecognitionForm" element={
 
                               <DashboardLayout>
 
 
                           <RecognitionForm />
-                          <FullKYCFlow/>
+                              <FullKYCFlow/>
+                         
                         </DashboardLayout>
         
-          } />
+          } /> */}
       </Routes>
       <Footer />
        
