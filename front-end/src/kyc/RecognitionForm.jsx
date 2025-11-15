@@ -1,7 +1,7 @@
 // MultiStepKYC.jsx
 import React, { useState } from "react";
 import "./RecognitionForm.css"; // optional custom CSS
-// import DashboardLayout from "./DashboardLayout";
+import DashboardLayout from "./DashboardLayout";
 
 const MultiStepKYC = () => {
   const [step, setStep] = useState(1);

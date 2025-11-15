@@ -17,11 +17,17 @@ import Login from './pages/Login';
 // import FullKYCFlow from './kyc/MultiStepKYC';
 import Landingpage from './component/Landingpage';
 import FullMultiStepKYC from './kyc/FullMultiStepKYC';
+import AdminPanel from './Admin/AdminPanel';
+import KYCDetails from './Admin/KYCDetails';
+import Analytics from './Admin/Analytics';
+import Sidebar from './Admin/Sidebar';
+import UserProfileFormFixed from './kyc/UserProfileFormFixed';
+import DashboardLayout from './kyc/DashboardLayout';
 
 function App() {
   return (
     <Router>
-      <Header />
+     
        
       <Routes>
         <Route path="/" element={
@@ -37,15 +43,21 @@ function App() {
         <Route path="/BrowseAllProducts" element={<BrowseAllProducts/>} />
 
        
-        {/* <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} />  */} */}
+        {/* <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} />  */} 
         <Route path="/RecognitionForm" element={<FullMultiStepKYC/> } />
+        <Route path="/UserProfile" element={
+          <DashboardLayout> 
+
+          <UserProfileFormFixed/>
+          </DashboardLayout> } />
 {/* Admin */}
 
-         {/* <Route path="/admin/kyc" element={<AdminPanel />} />
+         <Route path="/admin/kyc" element={<AdminPanel />} />
             <Route path="/admin/kyc/:id" element={<KYCDetails />} />
-            <Route path="/admin/analytics" element={<Analytics />} /> */}
+            <Route path="/admin/analytics" element={<Analytics />} />
+            <Route path="Sidebar" element={<Sidebar />} />
       </Routes>
-      <Footer />
+     
        
     </Router>
   );

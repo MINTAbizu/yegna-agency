@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DashboardLayout from "./DashboardLayout";
+import { Link } from "react-router-dom";
 
 const FullMultiStepKYC = () => {
   const [step, setStep] = useState(1);
@@ -323,9 +324,10 @@ const FullMultiStepKYC = () => {
               )}
 
               {step === 3 && (
-                <button type="submit" className="btn btn-success ms-auto">
+             <Link to={'/UserProfile'}>    <button type="submit" className="btn btn-success ms-auto">
                   Submit
                 </button>
+                </Link> 
               )}
             </div>
           </form>
