@@ -39,6 +39,11 @@ function App() {
        
         {/* <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} />  */} */}
         <Route path="/RecognitionForm" element={<FullMultiStepKYC/> } />
+{/* Admin */}
+
+         {/* <Route path="/admin/kyc" element={<AdminPanel />} />
+            <Route path="/admin/kyc/:id" element={<KYCDetails />} />
+            <Route path="/admin/analytics" element={<Analytics />} /> */}
       </Routes>
       <Footer />
        
