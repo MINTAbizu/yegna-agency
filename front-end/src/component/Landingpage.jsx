@@ -11,6 +11,7 @@ import Footer from './footer/Footer'
 import ProAccount from '../userprofilepage/ProAccount'
 import Sales from '../userprofilepage/Sales'
 import ListingsDashboard from '../userprofilepage/ListingsDashboard'
+import AddDigitalProduct from '../userprofilepage/AddDigitalProduct'
 
 function Landingpage() {
   return (
@@ -30,6 +31,7 @@ function Landingpage() {
                      <Footer />
                      <Sales/>
                      <ListingsDashboard/>
+                     <AddDigitalProduct/>
       
     </div>
   )
