@@ -146,7 +146,8 @@ const FullMultiStepKYC = () => {
                   />
                 </div>
 
-                <div className="mb-3">
+               <div className="d-flex">
+                 <div className="mb-3 p-2">
                   <label className="form-label">ID Type*</label>
                   <select
                     name="idType"
@@ -161,8 +162,21 @@ const FullMultiStepKYC = () => {
                     <option value="National ID">National ID</option>
                   </select>
                 </div>
+                  <div className="mb-3 p-2">
+                  <label className="form-label">ID Number*</label>
+                  <input
+                    type="text"
+                    name="idNumber"
+                    value={formData.idNumber}
+                    onChange={handleChange}
+                    className="form-control"
+                    required
+                  />
+                </div>
+               </div>
 
-                <div className="mb-3">
+               <div className="d-flex  ">
+                 <div className="mb-3 p-2">
                   <label className="form-label">ID Front*</label>
                   <input
                     type="file"
@@ -174,7 +188,7 @@ const FullMultiStepKYC = () => {
                   />
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-3 p-2">
                   <label className="form-label">ID Back*</label>
                   <input
                     type="file"
@@ -185,20 +199,12 @@ const FullMultiStepKYC = () => {
                     required
                   />
                 </div>
+               </div>
 
-                <div className="mb-3">
-                  <label className="form-label">ID Number*</label>
-                  <input
-                    type="text"
-                    name="idNumber"
-                    value={formData.idNumber}
-                    onChange={handleChange}
-                    className="form-control"
-                    required
-                  />
-                </div>
+              
 
-                <div className="mb-3">
+               <div className="d-flex alignitem-center">
+                 <div className="mb-3 mr-5">
                   <label className="form-label">Issue Date*</label>
                   <input
                     type="date"
@@ -210,7 +216,7 @@ const FullMultiStepKYC = () => {
                   />
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-3 p-2">
                   <label className="form-label">Expire Date*</label>
                   <input
                     type="date"
@@ -221,6 +227,7 @@ const FullMultiStepKYC = () => {
                     required
                   />
                 </div>
+               </div>
               </>
             )}
 

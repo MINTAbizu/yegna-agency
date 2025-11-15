@@ -7,23 +7,22 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Header from './component/Header/Header';
 import Footer from './component/footer/Footer';
-import Productlist from './component/product/Productlist';
-import Handmadeproduct from './component/Handmadeproduct/Handmadeproduct';
-import RewardsList from './component/Rewardcard/RewardsList';
-import BrowseAllProducts from './component/BrowseAllProducts/BrowseAllProducts';
-import PromotionCarousel from './component/PromotionCarousel/PromotionCarousel';
+
 import Register from './pages/Register';
+import BrowseAllProducts from './component/BrowseAllProducts/BrowseAllProducts';
 import Login from './pages/Login';
-import KycDashboardWithHeader from './kyc/KycDashboardWithHeader';
+// import KycDashboardWithHeader from './kyc/KycDashboardWithHeader';
 // import RecognitionForm from './kyc/RecognitionForm';
 // import DashboardLayout from './kyc/DashboardLayout';
 // import FullKYCFlow from './kyc/MultiStepKYC';
 import Landingpage from './component/Landingpage';
+import FullMultiStepKYC from './kyc/FullMultiStepKYC';
 
 function App() {
   return (
     <Router>
       <Header />
+       
       <Routes>
         <Route path="/" element={
           <>
@@ -33,26 +32,13 @@ function App() {
           </>
         } />
 
-        {/* <Route path="/register" element={<Register />} />
+         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/BrowseAllProducts" element={<BrowseAllProducts/>} />
 
-        <Route path="/products" element={<Productlist />} />
-        <Route path="/handmade" element={<Handmadeproduct />} />
-        <Route path="/rewards" element={<RewardsList />} />
-        <Route path="/browse" element={<BrowseAllProducts />} />
-        <Route path="/promotion" element={<PromotionCarousel />} />
-        <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} /> */}
-        {/* <Route path="/RecognitionForm" element={
-
-                              <DashboardLayout>
-
-
-                          <RecognitionForm />
-                              <FullKYCFlow/>
-                         
-                        </DashboardLayout>
-        
-          } /> */}
+       
+        {/* <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} />  */} */}
+        <Route path="/RecognitionForm" element={<FullMultiStepKYC/> } />
       </Routes>
       <Footer />
        

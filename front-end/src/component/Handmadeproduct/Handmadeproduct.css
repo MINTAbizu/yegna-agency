@@ -2,7 +2,8 @@
   width: 100%;
   overflow-x: hidden;
   padding: 20px;
-  background-color: hwb(0 73% 25%);;
+  background-color: hwb(0 73% 25%);
+  /* padding-top: 480px; */
 }
 .digitalproducttitle{
   text-align: center;

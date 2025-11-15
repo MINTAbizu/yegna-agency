@@ -5,7 +5,7 @@ import cors from "cors";
 
 import userroute from "./route/user.route/user.route.js";
 
-
+import kycRoutes from "./routes/kyc/kyc.route.js";
 dotenv.config();
 
 const app = express();
@@ -33,7 +33,10 @@ mongoose.connect(process.env.MONGO_URI)
 
 // ✅ Routes
 app.use("/api/users", userroute);
+app.use("/uploads", express.static("uploads")); // file access
 
+// Routes
+app.use("/api/kyc", kycRoutes);
 
 // ✅ Start server
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

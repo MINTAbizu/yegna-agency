@@ -8,6 +8,7 @@ const products = [
   { id: 1, name: 'Digital Product 1', image: '' },
   { id: 2, name: 'Digital Product 2', image: '' },
   { id: 3, name: 'Digital Product 3', image: '' },
+  { id: 3, name: 'Digital Product 3', image: '' },
   // { id: 4, name: 'Digital Product 4', image: "" },
   // { id: 5, name: 'Digital Product 5', image:"" },
 ];
@@ -29,8 +30,8 @@ function Productlist() {
   }, [lastScroll]);
 
   return (
-    <div className="product-list container my-5">
-      <h2 className="text-center mb-4">Digital Products</h2>
+    <div className="product-lists container my-5">
+      {/* <h2 className="text-center mb-4">Digital Products</h2> */}
       <div className="row g-4">
         {products.map((p) => (
           <div

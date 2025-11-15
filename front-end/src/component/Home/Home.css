@@ -27,6 +27,11 @@
   .home-container h1 {
     font-size: 2rem;
   }
+  .homebtn{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
   .home-container p {
     font-size: 1rem;

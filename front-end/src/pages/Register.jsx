@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    const navigate=useNavigate()
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,6 +22,8 @@ const Register = () => {
             const res = await axios.post('http://localhost:5000/api/users/register', formData);
             setMessage(res.data.message);
             localStorage.setItem('token', res.data.token);
+            navigate('/login')
+
         } catch (err) {
             setMessage(err.response?.data?.message || 'Error occurred');
         }
@@ -90,6 +94,7 @@ const Register = () => {
                     <button type="submit" className="btn btn-primary w-100 mb-3" disabled={loading}>
                         {loading ? 'Registering...' : 'Register'}
                     </button>
+                    <p >If u already registered......... <Link to={'/login'}>Login</Link></p>
                 </form>
 
                 <hr />

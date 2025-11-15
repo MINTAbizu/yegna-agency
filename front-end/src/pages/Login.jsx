@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {  useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
-
+  const Navigate=useNavigate()
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -15,9 +16,11 @@ const Login = () => {
         setLoading(true);
         setMessage('');
         try {
-            const res = await axios.post('/api/users/login', formData);
+            const res = await axios.post('http://localhost:5000/api/users/login', formData);
+            // const res = await axios.post('/api/users/login', formData);
             setMessage(res.data.message);
             localStorage.setItem('token', res.data.token);
+            Navigate('/RecognitionForm')
         } catch (err) {
             setMessage(err.response?.data?.message || 'Error occurred');
         }

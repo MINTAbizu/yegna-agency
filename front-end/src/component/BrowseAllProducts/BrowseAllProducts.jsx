@@ -9,6 +9,16 @@ const products = {
     { name: "Craft Book 1", image: test1 },
     { name: "Craft Book 1", image: test1 },
     { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
+    { name: "Craft Book 1", image: test1 },
     { name: "Craft Book 2", image: "https://via.placeholder.com/150" },
     { name: "Craft Book 3", image: "https://via.placeholder.com/150" }
   ],
@@ -35,6 +45,9 @@ const BrowseAllProducts = () => {
 
   return (
     <div className="browse-container">
+      <div>
+      
+      </div>
       <h2 className="browse-title">Browse All Products</h2>
 
       {/* Category Buttons */}

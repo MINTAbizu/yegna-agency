@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css';
+import { Link } from 'react-router-dom';
 // import heroImg from '../../assets/image/hero-bg.jpg'; // Replace with your image
 
 function Home() {
@@ -12,9 +13,18 @@ function Home() {
         <p className="lead mt-3">
           It’s free and takes less than a minute!
         </p>
-        <a href="#register" className="btn btn-lg btn-primary mt-4">
+         <div className='homebtn d-flex  gap-5 '>
+          <div className="getstartbtn">
+             <Link to={'/register'} className="btn btn-lg btn-primary mt-4">
           Get Started
-        </a>
+        </Link>
+          </div>
+          <div className="browseallproduct">
+             <Link to={'/BrowseAllProducts'} className="btn btn-lg btn-primary mt-4">
+          Browse-All
+        </Link>
+          </div>
+         </div>
       </div>
     </div>
   );

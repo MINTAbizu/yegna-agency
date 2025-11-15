@@ -1,7 +1,7 @@
 // MultiStepKYC.jsx
 import React, { useState } from "react";
 import "./RecognitionForm.css"; // optional custom CSS
-import DashboardLayout from "./DashboardLayout";
+// import DashboardLayout from "./DashboardLayout";
 
 const MultiStepKYC = () => {
   const [step, setStep] = useState(1);
@@ -43,7 +43,7 @@ const MultiStepKYC = () => {
   };
 
   return (
-    <DashboardLayout>
+    // <DashboardLayout>
       <div className="card mx-auto shadow" style={{ maxWidth: "600px" }}>
         <div className="card-body">
           <h2 className="card-title text-center mb-4">
@@ -251,7 +251,7 @@ const MultiStepKYC = () => {
           </form>
         </div>
       </div>
-    </DashboardLayout>
+    // </DashboardLayout>
   );
 };
 

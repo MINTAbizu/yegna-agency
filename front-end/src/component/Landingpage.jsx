@@ -4,19 +4,20 @@ import HorizontalProductList from './HorizontalScrollProducts/HorizontalScrollPr
 import Handmadeproduct from './Handmadeproduct/Handmadeproduct'
 import UserExample from './User/UserExample'
 import RewardsList from './Rewardcard/RewardsList'
-import BrowseAllProducts from './BrowseAllProducts/BrowseAllProducts'
 import PromotionCarousel from './PromotionCarousel/PromotionCarousel'
+import Home from './Home/Home'
 
 function Landingpage() {
   return (
     <div>
         <Home/>
-                    <Productlist/>
+                    
                     <HorizontalProductList/>
+                    <Productlist/>
                     <Handmadeproduct/>
                     <UserExample/>
                     <RewardsList/>
-                    <BrowseAllProducts/>
+                    
                     <PromotionCarousel/>
       
     </div>
