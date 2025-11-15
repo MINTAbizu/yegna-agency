@@ -8,10 +8,7 @@ import PromotionCarousel from './PromotionCarousel/PromotionCarousel'
 import Home from './Home/Home'
 import Header from './Header/Header'
 import Footer from './footer/Footer'
-import ProAccount from '../userprofilepage/ProAccount'
-import Sales from '../userprofilepage/Sales'
-import ListingsDashboard from '../userprofilepage/ListingsDashboard'
-import AddDigitalProduct from '../userprofilepage/AddDigitalProduct'
+import ProAccount from './Shope/userprofilepage/ProAccount'
 
 function Landingpage() {
   return (
@@ -29,9 +26,6 @@ function Landingpage() {
                     <ProAccount/>
 
                      <Footer />
-                     <Sales/>
-                     <ListingsDashboard/>
-                     <AddDigitalProduct/>
       
     </div>
   )
