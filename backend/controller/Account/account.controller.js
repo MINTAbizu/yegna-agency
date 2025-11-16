@@ -1,4 +1,4 @@
-import Account from "../../model/AccountModel/account.model";
+import Account from "../../model/AccountModel/account.model.js";
 
 // Create new account (seller)
 export const createAccount = async (req, res) => {

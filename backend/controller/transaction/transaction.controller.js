@@ -1,68 +1,85 @@
 import Transaction from "../../model/TransactioModel/transaction.model.js";
 import Account from "../../model/AccountModel/account.model.js";
 
-// Buyer initiates purchase
+// Create a new transaction (buyer initiates purchase)
 export const createTransaction = async (req, res) => {
   try {
-    const { accountId } = req.body;
-    const account = await Account.findById(accountId);
-    if (!account || account.status !== "available") {
-      return res.status(400).json({ message: "Account not available" });
-    }
+    const { accountId, amount } = req.body;
 
-    const commissionRate = 0.1; // 10% platform commission
-    const commission = account.price * commissionRate;
+    const account = await Account.findById(accountId);
+    if (!account) return res.status(404).json({ message: "Account not found" });
+    if (account.status !== "available") return res.status(400).json({ message: "Account not available" });
 
     const transaction = new Transaction({
       buyerId: req.user.id,
       sellerId: account.sellerId,
       accountId,
-      amount: account.price,
-      commission,
+      amount,
       status: "pending",
     });
 
     await transaction.save();
-
-    // Mark account as pending
-    account.status = "pending";
-    account.transactionId = transaction._id;
-    await account.save();
-
     res.status(201).json(transaction);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Server error", error });
   }
 };
 
-// Complete transaction (admin verifies)
+// Mark transaction as completed and update account
 export const completeTransaction = async (req, res) => {
   try {
-    const transaction = await Transaction.findById(req.params.id);
+    const { transactionId } = req.params;
+
+    const transaction = await Transaction.findById(transactionId);
     if (!transaction) return res.status(404).json({ message: "Transaction not found" });
 
     transaction.status = "completed";
     await transaction.save();
 
-    // Update account as sold
     const account = await Account.findById(transaction.accountId);
     account.status = "sold";
+    account.buyerId = transaction.buyerId;
     await account.save();
 
     res.status(200).json({ transaction, account });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Server error", error });
   }
 };
 
-// Get all transactions for a user
+// Get all transactions for a user (buyer or seller)
 export const getUserTransactions = async (req, res) => {
   try {
+    const userId = req.user.id;
     const transactions = await Transaction.find({
-      $or: [{ buyerId: req.params.userId }, { sellerId: req.params.userId }]
-    }).populate("accountId");
+      $or: [{ buyerId: userId }, { sellerId: userId }],
+    })
+      .populate("buyerId", "name email")
+      .populate("sellerId", "name email")
+      .populate("accountId", "platform username price");
+
     res.status(200).json(transactions);
   } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+// ✅ Add this missing function
+export const getTransactionById = async (req, res) => {
+  try {
+    const transaction = await Transaction.findById(req.params.transactionId)
+      .populate("buyerId", "name email")
+      .populate("sellerId", "name email")
+      .populate("accountId", "platform username price");
+
+    if (!transaction) return res.status(404).json({ message: "Transaction not found" });
+
+    res.status(200).json(transaction);
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Server error", error });
   }
 };

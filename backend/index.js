@@ -6,10 +6,11 @@ import fs from "fs";
 import userroute from "./route/user.route/user.route.js";
 
 import kycRoutes from "./route/kyc/kyc.route.js";
+import accountRoutes from "./route/Accountsell/account.route.js";
+import transactionRoutes from "./route/transaction/transaction.route.js";
 
 
-// app.use("/api/accounts", accountRoutes);
-// app.use("/api/transactions", transactionRoutes);
+
 
 dotenv.config();
 
@@ -55,10 +56,28 @@ const __dirname = path.dirname(__filename);
 app.use("/api/kyc", kycRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 const uploadPath = path.join(process.cwd(), "uploads");
-
+// Acoount selling
+app.use("/api/accounts", accountRoutes);
+app.use("/api/transactions", transactionRoutes);
 // Create folder if it doesn't exist
+
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
 }
 // ✅ Start server
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+
+
+
+
+
+// Use JWT authentication (protect) middleware to identify req.user.
+
+// Implement payment gateway in createTransaction:
+
+// Charge buyer
+
+// Hold money in escrow (Stripe Connect or similar)
+
+// Only mark transaction as completed after ownership verification.
