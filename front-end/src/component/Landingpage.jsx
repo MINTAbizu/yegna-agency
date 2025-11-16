@@ -28,8 +28,8 @@ function Landingpage() {
                     <ProAccount/>
 
                      <Footer />
-                     <SellSocialMediaAccount/>
-                     <OrdersDashboard/>
+                     {/* <SellSocialMediaAccount/>
+                     <OrdersDashboard/> */}
       
     </div>
   )

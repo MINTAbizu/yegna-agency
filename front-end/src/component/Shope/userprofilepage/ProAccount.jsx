@@ -1,89 +1,86 @@
 import React from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PlansPage = () => {
   const plans = [
     {
       name: "Free",
       price: "Always",
-      description: "A perfect start for individuals to explore Ye-Buna's features.",
+      description: "Start exploring Ye-Buna features.",
       features: [
         "Get tips from your community",
         "List limited digital products",
         "Participate in bounty programs",
-        "Connect all your social media profiles and key links in one place",
-        "24/7 chat and email support with 1 hour response time",
+        "Connect social profiles & links",
+        "24/7 chat & email support",
       ],
       buttonText: "Start Free",
-      buttonClass: "bg-blue-500 hover:bg-blue-600",
+      bgColor: "bg-white",
+      buttonClass: "btn-primary",
     },
     {
       name: "Pro",
       price: "2999 ETB / Year",
-      description: "For 1 year premium experience on Ye-Buna seeking maximum exposure.",
+      description: "Premium experience with maximum exposure.",
       features: [
-        "Display a verified badge on profile and products",
-        "Get tips from your community",
-        "Promote your products directly on Ye-Buna official site",
-        "List unlimited digital and physical products",
-        "Launch and manage your own crowdfunding campaigns",
-        "Manage subscription plans for recurring revenue",
-        "Explore freelancing opportunities",
-        "Create your own online community (Club)",
-        "Connect all social media profiles and key links",
-        "Unlock premium features exclusive to members",
-        "Priority email and telegram support within 24 hours",
+        "Verified badge on profile & products",
+        "Promote products on Ye-Buna",
+        "List unlimited digital & physical products",
+        "Launch crowdfunding campaigns",
+        "Manage subscriptions & recurring revenue",
+        "Create your online community (Club)",
       ],
       buttonText: "Upgrade to Pro",
-      buttonClass: "bg-green-500 hover:bg-green-600",
+      bgColor: "bg-light",
+      buttonClass: "btn-success",
     },
     {
       name: "Enterprise",
       price: "Custom Pricing",
-      description: "For businesses seeking maximum exposure and enterprise features.",
+      description: "Enterprise features for businesses.",
       features: [
         "All Pro features",
         "Dedicated account manager",
-        "Custom integrations and APIs",
+        "Custom integrations & APIs",
         "Team management tools",
-        "Priority support via chat, email, and phone",
+        "Priority support",
       ],
       buttonText: "Contact Sales",
-      buttonClass: "bg-purple-500 hover:bg-purple-600",
+      bgColor: "bg-secondary text-white",
+      buttonClass: "btn-warning",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
-      <h1 className="text-3xl font-bold mb-6 text-center">
-        Choose The Offer That Suits You
-      </h1>
-      <p className="text-gray-600 mb-8 text-center max-w-2xl">
-        Enjoy the free and premium experience of ye-buna.com
+    <div className="container py-5">
+      <h1 className="text-center mb-3">Choose Your Plan</h1>
+      <p className="text-center text-muted mb-5">
+        Enjoy the free and premium experience of Ye-Buna.
       </p>
 
-      {/* Flex container for cards */}
-      <div className="flex space-x-6 overflow-x-auto pb-4 d-flex">
-        {plans.map((plan) => (
-          <div
-            key={plan.name}
-            className="flex-shrink-0 w-80 bg-white rounded-2xl shadow-lg p-6 flex m-3  flex-col justify-between m-3 hover:scale-105 transition-transform duration-200"
-          >
-            <div>
-              <h2 className="text-2xl font-bold mb-2">{plan.name}</h2>
-              <p className="text-gray-500 mb-4">{plan.price}</p>
-              <p className="mb-4">{plan.description}</p>
+      <div className="row justify-content-center g-4">
+        {plans.map((plan, index) => (
+          <div key={index} className="col-12 col-sm-6 col-md-4">
+            <div className={`card h-100 ${plan.bgColor} shadow-sm`}>
+              <div className="card-body d-flex flex-column">
+                <h5 className="card-title text-center">{plan.name}</h5>
+                <h6 className="card-subtitle mb-3 text-center text-muted">{plan.price}</h6>
+                <p className="card-text text-center">{plan.description}</p>
 
-              <ul className="mb-4 list-disc list-inside space-y-1 text-gray-600">
-                {plan.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))}
-              </ul>
+                <ul className="list-unstyled flex-grow-1 mb-3">
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} className="mb-1 d-flex align-items-center">
+                      <FaCheckCircle className="text-success me-2" /> {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <button className={`btn ${plan.buttonClass} mt-auto`}>
+                  {plan.buttonText}
+                </button>
+              </div>
             </div>
-            <button
-              className={`mt-auto w-full ${plan.buttonClass} text-white py-3 rounded-lg font-semibold`}
-            >
-              {plan.buttonText}
-            </button>
           </div>
         ))}
       </div>

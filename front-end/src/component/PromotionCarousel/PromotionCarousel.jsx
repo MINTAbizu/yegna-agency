@@ -1,14 +1,17 @@
 import React from "react";
 import Slider from "react-slick";
 import "./PromotionCarousel.css";
-import test1 from '../../assets/image/test2.jpg'
+import test1 from '../../assets/image/test.jpg'
+import test5 from '../../assets/image/test5.png'
+import test from '../../assets/image/test.jpg'
+import test3 from '../../assets/image/Promoting Handmade Crafts Online.png'
 
 const promotions = [
   {
     id: 1,
     title: "Big Sale 50% Off!",
     description: "Get the best deals on all products this weekend.",
-    image: test1,
+    image: test,
   },
   {
     id: 2,
@@ -22,7 +25,14 @@ const promotions = [
     title: "Limited Time Offer",
     description: "Hurry up! Offer ends soon.",
     // image: "https://via.placeholder.com/800x300?text=Promotion+3",
-    image: test1,
+    image: test3,
+  },
+  {
+    id: 3,
+    title: "Limited Time Offer",
+    description: "Hurry up! Offer ends soon.",
+    // image: "https://via.placeholder.com/800x300?text=Promotion+3",
+    image: test5,
   },
 ];
 
