@@ -14,6 +14,7 @@ const DashboardLayout = ({ children }) => {
     { name: "Dashboard", path: "/dashboard", icon: <FaTachometerAlt /> },
     { name: "Create Pro Account", path: "/create-pro", icon: <FaUserPlus /> },
     { name: "View Page", path: "/view-page", icon: <FaEye /> },
+    { name: "Shope", path: "/orders", icon: <FaEye /> },
     { name: "Setting", path: "/setting", icon: <FaCog /> },
     { name: "Bank", path: "/bank", icon: <FaUniversity /> },
     { name: "Payments", path: "/payments", icon: <FaMoneyCheckAlt /> },

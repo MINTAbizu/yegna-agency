@@ -8,7 +8,7 @@ function Home() {
     <div className="home-container d-flex align-items-center justify-content-center">
       <div className="text-center text-white px-3">
         <h1 className="display-4 ">
-          All you need to make money <br /> doing what you love
+          All you need to make money <br /> Sell What You Have On ur hand
         </h1>
         <p className="lead mt-3">
           It’s free and takes less than a minute!

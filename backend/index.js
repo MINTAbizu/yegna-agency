@@ -9,7 +9,7 @@ import kycRoutes from "./route/kyc/kyc.route.js";
 import accountRoutes from "./route/Accountsell/account.route.js";
 import transactionRoutes from "./route/transaction/transaction.route.js";
 
-
+import profileRoutes from './route/profile.route/profile.route.js'
 
 
 dotenv.config();
@@ -60,6 +60,7 @@ const uploadPath = path.join(process.cwd(), "uploads");
 app.use("/api/accounts", accountRoutes);
 app.use("/api/transactions", transactionRoutes);
 // Create folder if it doesn't exist
+app.use("/api/profile", profileRoutes);
 
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
