@@ -23,7 +23,7 @@ import Analytics from './Admin/Analytics';
 import Sidebar from './Admin/Sidebar';
 import UserProfileFormFixed from './kyc/UserProfileFormFixed';
 import DashboardLayout from './kyc/DashboardLayout';
-
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 function App() {
   return (
     <Router>
@@ -40,16 +40,27 @@ function App() {
 
          <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/BrowseAllProducts" element={<BrowseAllProducts/>} />
+        <Route path="/BrowseAllProducts" element={
+             <ProtectedRoute> 
+          <BrowseAllProducts/>
+             </ProtectedRoute> 
+          
+          } />
 
        
         {/* <Route path="/KycDashboardWithHeader" element={<KycDashboardWithHeader />} />  */} 
-        <Route path="/RecognitionForm" element={<FullMultiStepKYC/> } />
+        <Route path="/RecognitionForm" element={
+          
+          <FullMultiStepKYC/> }
+           />
         <Route path="/UserProfile" element={
+            <ProtectedRoute> 
           <DashboardLayout> 
 
           <UserProfileFormFixed/>
-          </DashboardLayout> } />
+          </DashboardLayout>
+            </ProtectedRoute> 
+           } />
 {/* Admin */}
 
          <Route path="/admin/kyc" element={<AdminPanel />} />

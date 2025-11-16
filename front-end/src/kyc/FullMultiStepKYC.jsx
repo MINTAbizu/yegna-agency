@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import DashboardLayout from "./DashboardLayout";
 import { Link } from "react-router-dom";
-
+import { useAuth } from "../Context/Authcontext";
 const FullMultiStepKYC = () => {
   const [step, setStep] = useState(1);
+const { user, loading } = useAuth()
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -73,6 +74,8 @@ const FullMultiStepKYC = () => {
     <DashboardLayout>
       <div className="card mx-auto shadow" style={{ maxWidth: "600px" }}>
         <div className="card-body">
+         {user?.name }
+
           <h2 className="card-title text-center mb-4">
             {step === 1
               ? "KYC Profile"

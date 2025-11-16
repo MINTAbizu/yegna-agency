@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
 import { Link, useNavigate } from 'react-router-dom';
-
+import {useAuth} from '../Context/Authcontext'
 const Register = () => {
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate=useNavigate()
-
+const {register}=useAuth()
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -19,9 +19,14 @@ const Register = () => {
         setLoading(true);
         setMessage('');
         try {
-            const res = await axios.post('http://localhost:5000/api/users/register', formData);
-            setMessage(res.data.message);
-            localStorage.setItem('token', res.data.token);
+            const res = await register({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+            });
+            // const res = await axios.post('http://localhost:5000/api/users/register', formData);
+            // setMessage(res.data.message);
+            // localStorage.setItem('token', res.data.token);
             navigate('/login')
 
         } catch (err) {
@@ -31,21 +36,21 @@ const Register = () => {
     };
 
     // Google login
-    const handleGoogleSuccess = async (credentialResponse) => {
-        try {
-            const res = await axios.post('http://localhost:5000/api/users/google', {
-                tokenId: credentialResponse.credential
-            });
-            localStorage.setItem('token', res.data.token);
-            setMessage('Logged in as ' + res.data.user.name);
-        } catch (err) {
-            setMessage('Google login failed');
-        }
-    };
+    // const handleGoogleSuccess = async (credentialResponse) => {
+    //     try {
+    //         const res = await axios.post('http://localhost:5000/api/users/google', {
+    //             tokenId: credentialResponse.credential
+    //         });
+    //         localStorage.setItem('token', res.data.token);
+    //         setMessage('Logged in as ' + res.data.user.name);
+    //     } catch (err) {
+    //         setMessage('Google login failed');
+    //     }
+    // };
 
-    const handleGoogleError = () => {
-        setMessage('Google login failed');
-    };
+    // const handleGoogleError = () => {
+    //     setMessage('Google login failed');
+    // };
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
@@ -100,12 +105,12 @@ const Register = () => {
                 <hr />
 
                 {/* Google Login */}
-                <div className="d-flex justify-content-center">
+                {/* <div className="d-flex justify-content-center">
                     <GoogleLogin
                         onSuccess={handleGoogleSuccess}
                         onError={handleGoogleError}
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -1,8 +1,9 @@
 // DashboardLayout.jsx
 import React from "react";
 import "./DashboardLayout.css"; // Your custom CSS for sidebar/header
-
+import { useAuth } from "../Context/Authcontext";
 const DashboardLayout = ({ children }) => {
+  const { user } = useAuth()
   const sidebarItems = [
     "Home",
     "Dashboard",
@@ -19,7 +20,9 @@ const DashboardLayout = ({ children }) => {
       {/* Sidebar */}
       <nav className="sidebar bg-light">
         <div className="sidebar-header text-center py-4 fw-bold">
-          MintsenotBizuayehw
+         Dear, {user?.name}
+
+
         </div>
         <ul className="list-unstyled">
           {sidebarItems.map((item, index) => (
@@ -52,7 +55,8 @@ const DashboardLayout = ({ children }) => {
               <span className="notification-dot"></span>
             </div>
             <div className="avatar bg-secondary text-white d-flex justify-content-center align-items-center">
-              M
+             { user?.name?.charAt(0)?.toUpperCase()}
+
             </div>
           </div>
         </header>
