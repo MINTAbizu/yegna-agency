@@ -11,6 +11,7 @@ import Footer from './footer/Footer'
 import ProAccount from './Shope/userprofilepage/ProAccount'
 import SellSocialMediaAccount from './Shope/userprofilepage/SellSocialMediaAccount'
 import OrdersDashboard from './Shope/userprofilepage/OrdersDashboard'
+import ServicesSection from './ServicesSection/ServicesSection'
 
 function Landingpage() {
   return (
@@ -26,6 +27,7 @@ function Landingpage() {
                     
                     <PromotionCarousel/>
                     <ProAccount/>
+                    <ServicesSection/>
 
                      <Footer />
                      {/* <SellSocialMediaAccount/>
