@@ -6,6 +6,11 @@ import fs from "fs";
 import userroute from "./route/user.route/user.route.js";
 
 import kycRoutes from "./route/kyc/kyc.route.js";
+
+
+// app.use("/api/accounts", accountRoutes);
+// app.use("/api/transactions", transactionRoutes);
+
 dotenv.config();
 
 const app = express();
