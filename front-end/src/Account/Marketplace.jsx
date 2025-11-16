@@ -1,4 +1,3 @@
-// src/pages/Marketplace.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AccountCard from "../Account/AccountCard";
@@ -28,13 +27,13 @@ const Marketplace = () => {
     if (!user) return alert("You must be logged in to buy an account.");
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/transactions",
-        { accountId },
+      await axios.put(
+        `http://localhost:5000/api/accounts/${accountId}/sold`,
+        { buyerId: user.id },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
-      alert("Transaction created! Await admin verification.");
-      fetchAccounts(); // refresh status
+      alert("You bought the account successfully!");
+      fetchAccounts(); // Refresh list
     } catch (error) {
       console.error("Purchase failed:", error);
       alert(error.response?.data?.message || "Purchase failed.");

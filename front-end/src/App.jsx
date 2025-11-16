@@ -25,6 +25,14 @@ import UserProfileFormFixed from './kyc/UserProfileFormFixed';
 import DashboardLayout from './kyc/DashboardLayout';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 import Marketplace from './Account/Marketplace';
+
+import SellerPage from './Account/SellerPage';
+import OrdersDashboard from './component/Shope/userprofilepage/OrdersDashboard';
+import ListingsDashboard from './component/Shope/userprofilepage/ListingsDashboard';
+import AffiliateOrders from './component/Shope/userprofilepage/AffiliateOrders';
+import AddDigitalProduct from './component/Shope/userprofilepage/AddDigitalProduct';
+import AddBook from './component/Shope/userprofilepage/AddBook';
+import SellSocialMediaAccount from './component/Shope/userprofilepage/SellSocialMediaAccount';
 function App() {
   return (
     <Router>
@@ -67,7 +75,7 @@ function App() {
                     path="/marketplace"
                     element={
                       <ProtectedRoute>
-                        <Marketplace />
+                        <SellerPage />
                       </ProtectedRoute>
                     }
                   />
@@ -77,6 +85,27 @@ function App() {
             <Route path="/admin/kyc/:id" element={<KYCDetails />} />
             <Route path="/admin/analytics" element={<Analytics />} />
             <Route path="Sidebar" element={<Sidebar />} /> */}
+
+
+
+            {/* Shop */}
+             
+
+                {/* <Route path="/shop" element={<ShopPage />} /> */}
+                <Route path="/orders" element={<OrdersDashboard />} />
+
+                <Route path="/listings" element={<ListingsDashboard />} />
+                <Route path="/affiliate" element={<AffiliateOrders />} />
+                {/* <Route path="/claims" element={<ClaimsPage />} /> */}
+                <Route path="/digitalproduct" element={<AddDigitalProduct />} />
+                <Route path="/addbook" element={<AddBook />} />
+                <Route path="/socialmediaaccount" element={
+                  <DashboardLayout> 
+                  <SellSocialMediaAccount />
+                  </DashboardLayout> 
+                  } />
+
+
       </Routes>
      
        

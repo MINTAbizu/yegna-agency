@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ListingsDashboard = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("Physical Product");
 
   const categories = [
-    { name: "Physical Product", buttonText: "Add Product" },
-    { name: "Digital Product", buttonText: "Add Product" },
-    { name: "Book", buttonText: "Add Book" },
+    { name: "Physical Product", buttonText: "Add Product", link: "/physicalproduct" },
+    { name: "Digital Product", buttonText: "Add Product", link: "/digitalproduct" },
+    { name: "Book", buttonText: "Add Book", link: "/addbook" },
+    { name: "Social Media Axxount", buttonText: "Add Account", link: "/socialmediaaccount" },
   ];
 
   return (
@@ -25,7 +28,13 @@ const ListingsDashboard = () => {
           >
             <div className="card-body d-flex flex-column justify-content-between">
               <h6 className="card-title">{category.name}</h6>
-              <button className="btn btn-primary btn-sm mt-3">
+              <button
+                className="btn btn-primary btn-sm mt-3"
+                onClick={(e) => {
+                  e.stopPropagation(); // prevent card click
+                  navigate(category.link); // navigate to page
+                }}
+              >
                 {category.buttonText}
               </button>
             </div>
@@ -37,11 +46,7 @@ const ListingsDashboard = () => {
       <div className="card shadow-sm">
         <div className="card-header d-flex justify-content-between align-items-center">
           <h5 className="mb-0">{selectedCategory} - My Products</h5>
-          <input
-            type="text"
-            className="form-control w-auto"
-            placeholder="Search..."
-          />
+          <input type="text" className="form-control w-auto" placeholder="Search..." />
         </div>
         <div className="table-responsive">
           <table className="table table-hover mb-0">
@@ -65,15 +70,6 @@ const ListingsDashboard = () => {
               </tr>
             </tbody>
           </table>
-        </div>
-
-        {/* Pagination */}
-        <div className="card-footer d-flex justify-content-between align-items-center">
-          <small className="text-muted">Showing 0 to 0 of 0 entries</small>
-          <div className="btn-group">
-            <button className="btn btn-outline-secondary btn-sm">Prev</button>
-            <button className="btn btn-outline-secondary btn-sm">Next</button>
-          </div>
         </div>
       </div>
     </div>

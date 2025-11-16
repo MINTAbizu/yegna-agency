@@ -1,20 +1,22 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const OrdersDashboard = () => {
   return (
     <div className="container-fluid py-4">
       {/* Header / Tabs */}
-      <div className="d-flex flex-wrap mb-4">
-        {["Shop", "Orders", "Listings", "Affiliate", "Claims"].map((tab) => (
-          <button
-            key={tab}
-            className="btn btn-outline-primary me-2 mb-2"
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
+   <div className="d-flex flex-wrap mb-4">
+  {["Shop", "Orders", "Listings", "Affiliate", "Claims"].map((tab) => (
+    <Link
+      key={tab}
+      to={`/${tab.toLowerCase()}`} // e.g., /shop, /orders
+      className="btn btn-outline-primary me-2 mb-2"
+    >
+      {tab}
+    </Link>
+  ))}
+</div>
 
       {/* Metrics Cards */}
       <div className="d-flex flex-wrap gap-3 mb-4">

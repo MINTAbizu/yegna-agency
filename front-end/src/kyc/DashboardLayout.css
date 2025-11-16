@@ -1,61 +1,82 @@
-/* DashboardLayout.css */
-
 .dashboard-wrapper {
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
+/* Sidebar for desktop */
 .sidebar {
-  width: 220px;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 0;
-  overflow-y: auto;
+  min-width: 250px;
+  transition: transform 0.3s ease;
 }
 
-.sidebar-link {
-  display: block;
-  color: #333;
-  border-radius: 4px;
-  transition: 0.2s;
-  text-decoration: none;
+/* Mobile: hide sidebar by default */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    flex-grow: 1;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+}
+.dashboard-wrapper {
+  min-height: 100vh;
+  position: relative;
 }
 
-.sidebar-link:hover {
-  background-color: #e7f1ff;
+/* Desktop sidebar */
+.sidebar {
+  min-width: 250px;
+  transition: transform 0.3s ease;
 }
 
-.main-content {
-  margin-left: 220px;
-  width: calc(100% - 220px);
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow-y: auto;
+/* Mobile sidebar */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 1000;
+    padding: 1rem;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Overlay */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+  }
+
+  .main-content {
+    flex-grow: 1;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
 }
 
-.header {
-  height: 60px;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.notification-dot {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 8px;
-  height: 8px;
-  background-color: red;
-  border-radius: 50%;
-}
-
-.avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-}
