@@ -1,4 +1,4 @@
-import physicalProduct from "../../model/digitalproducts/digital products.js"
+import physicalProduct from "../../model/physicalproduct/physicalprosuct.model.js"
 
 export const addphyshicalProduct = async (req, res) => {
   try {

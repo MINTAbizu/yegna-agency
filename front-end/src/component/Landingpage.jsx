@@ -13,14 +13,16 @@ import SellSocialMediaAccount from './Shope/userprofilepage/SellSocialMediaAccou
 import OrdersDashboard from './Shope/userprofilepage/OrdersDashboard'
 import ServicesSection from './ServicesSection/ServicesSection'
 import DigitalProductsList from './DigitalProductsList'
+import AdminDashboard from '../Admin/AdminDashboard'
+import AdminKYCList from '../Admin/AdminUsersTable/AdminKYCList'
 
 function Landingpage() {
   return (
     <div>
-      <Header />
-        <Home/>
+      {/* <Header />
+        <Home/> */}
                     
-                    <HorizontalProductList/>
+                    {/* <HorizontalProductList/>
                     <Productlist/>
                     <Handmadeproduct/>
                     <UserExample/>
@@ -30,10 +32,13 @@ function Landingpage() {
                     <ProAccount/>
                     <ServicesSection/>
 
-                     <Footer />
+                     <Footer /> */}
                      {/* <SellSocialMediaAccount/>
                      <OrdersDashboard/> */}
                      {/* <DigitalProductsList/> */}
+
+                     {/* <AdminDashboard/> */}
+                     <AdminKYCList/>
       
     </div>
   )

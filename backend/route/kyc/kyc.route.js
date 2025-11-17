@@ -1,6 +1,6 @@
 import express from "express";
 import upload from "../../middleware/kyc/middlewareupload.js";
-import { submitKYC } from "../../controller/kyc/kyc.controller.js";
+import { submitKYC, getAllKYC, deleteKYC } from "../../controller/kyc/kyc.controller.js";
 
 const router = express.Router();
 
@@ -13,5 +13,8 @@ router.post(
   ]),
   submitKYC
 );
+
+router.get("/", getAllKYC);           // Get all KYC
+router.delete("/:id", deleteKYC);     // Delete KYC
 
 export default router;

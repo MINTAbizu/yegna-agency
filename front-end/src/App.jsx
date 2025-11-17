@@ -22,6 +22,7 @@ import AddDigitalProduct from './component/Shope/userprofilepage/AddDigitalProdu
 import AddBook from './component/Shope/userprofilepage/AddBook';
 import SellSocialMediaAccount from './component/Shope/userprofilepage/SellSocialMediaAccount';
 import FullMultiStepKYC from './kyc/FullMultiStepKYC';
+import AdminUsersTable from './Admin/AdminUsersTable/AdminUsersTable';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
           <Route path="/" element={<Landingpage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          {/* admin */}
+          <Route path="/AdminUsersTable" element={<AdminUsersTable />} />
+
 
           {/* Protected Routes */}
           <Route

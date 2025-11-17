@@ -1,6 +1,6 @@
 import express from "express";
-import upload from "../../middleware/digitalproduct/upload.js";
-import { addphyshicalProduct, getAllphysicalProducts } from "../../controller/digitalProduct.controller/digitalProduct.controller.js";
+import upload from "../../middleware/physhicalproduct/physicalproduct.middleare.js";
+import { addphyshicalProduct, getAllphysicalProducts } from "../../controller/physicalproduct/physicalproduct.js";
 
 const router = express.Router();
 
