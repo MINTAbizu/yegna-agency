@@ -3,82 +3,34 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import fs from "fs";
-import userroute from "./route/user.route/user.route.js";
+import path from "path";
 
-import kycRoutes from "./route/kyc/kyc.route.js";
-import accountRoutes from "./route/Accountsell/account.route.js";
-import transactionRoutes from "./route/transaction/transaction.route.js";
-
-import profileRoutes from './route/profile.route/profile.route.js'
-
+import digitalProductRoutes from "./route/digitalProduct.route/digitalProduct.route.js";
+import userregister from "./route/user.route/user.route.js";
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ Correct CORS configuration
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",        // local development
-      // "https://shala22.netlify.app"   // your deployed frontend (NO trailing slash!)
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true, // if you’re using cookies or auth tokens
-  })
-);
+// CORS
+app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+app.use(express.json());
 
-app.use(express.json()); // ✅ parse JSON request bodies
-
-// ✅ MongoDB connection
+// MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .catch(err => console.error("❌ MongoDB connection error:", err));
 
-// ✅ Routes
-app.use("/api/users", userroute);
-// app.use("/uploads", express.static("uploads")); // file access
+// Ensure upload folders exist
+const digitalProductUploadPath = path.join(process.cwd(), "uploads/digitalProducts");
+if (!fs.existsSync(digitalProductUploadPath)) fs.mkdirSync(digitalProductUploadPath, { recursive: true });
 
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-// app.use("/uploads", express.static(path.join(process.cwd(), "backend/uploads")));
-
-
+// Serve uploaded images
+app.use("/uploads/digitalProducts", express.static(digitalProductUploadPath));
 
 // Routes
-app.use("/api/kyc", kycRoutes);
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-const uploadPath = path.join(process.cwd(), "uploads");
-// Acoount selling
-app.use("/api/accounts", accountRoutes);
-app.use("/api/transactions", transactionRoutes);
-// Create folder if it doesn't exist
-app.use("/api/profile", profileRoutes);
+app.use("/api/digital-products", digitalProductRoutes);
+app.use("/api/users", userregister);
 
-if (!fs.existsSync(uploadPath)) {
-  fs.mkdirSync(uploadPath, { recursive: true });
-}
-// ✅ Start server
+// Start server
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-
-
-
-
-
-
-// Use JWT authentication (protect) middleware to identify req.user.
-
-// Implement payment gateway in createTransaction:
-
-// Charge buyer
-
-// Hold money in escrow (Stripe Connect or similar)
-
-// Only mark transaction as completed after ownership verification.

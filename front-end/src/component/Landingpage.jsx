@@ -12,6 +12,7 @@ import ProAccount from './Shope/userprofilepage/ProAccount'
 import SellSocialMediaAccount from './Shope/userprofilepage/SellSocialMediaAccount'
 import OrdersDashboard from './Shope/userprofilepage/OrdersDashboard'
 import ServicesSection from './ServicesSection/ServicesSection'
+import DigitalProductsList from './DigitalProductsList'
 
 function Landingpage() {
   return (
@@ -32,6 +33,7 @@ function Landingpage() {
                      <Footer />
                      {/* <SellSocialMediaAccount/>
                      <OrdersDashboard/> */}
+                     {/* <DigitalProductsList/> */}
       
     </div>
   )
