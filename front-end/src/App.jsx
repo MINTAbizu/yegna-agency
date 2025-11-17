@@ -21,6 +21,7 @@ import AffiliateOrders from './component/Shope/userprofilepage/AffiliateOrders';
 import AddDigitalProduct from './component/Shope/userprofilepage/AddDigitalProduct';
 import AddBook from './component/Shope/userprofilepage/AddBook';
 import SellSocialMediaAccount from './component/Shope/userprofilepage/SellSocialMediaAccount';
+import FullMultiStepKYC from './kyc/FullMultiStepKYC';
 
 function App() {
   return (
@@ -50,8 +51,13 @@ function App() {
                 </DashboardLayout>
               </ProtectedRoute>
             }
+          />  
+               <Route
+            path="/RecognitionForm"
+            element={
+                  <FullMultiStepKYC />
+            }
           />
-
           {/* Account/Selling Pages */}
           <Route
             path="/marketplace"

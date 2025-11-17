@@ -72,7 +72,7 @@ const { user, loading } = useAuth()
 
   return (
     <DashboardLayout>
-      <div className="card mx-auto shadow" style={{ maxWidth: "600px" }}>
+      <div className="card mt-5 mx-auto shadow" style={{ maxWidth: "600px" }}>
         <div className="card-body">
          {user?.name }
 
