@@ -9,6 +9,7 @@ const profileSchema = new mongoose.Schema({
   field: { type: String },
   avatar: { type: String },
   backgroundImage: { type: String },
+  status: { type: String, enum: ["pending", "approved", "rejected"], default: "pending" },
 }, { timestamps: true });
 
 export default mongoose.model("Profile", profileSchema);

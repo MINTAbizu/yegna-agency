@@ -1,4 +1,3 @@
-// UserProfileFormFixed.jsx
 import React, { useState } from "react";
 import { useAuth } from "../Context/Authcontext";
 
@@ -29,15 +28,18 @@ const UserProfileFormFixed = () => {
   const [avatar, setAvatar] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(null); // <-- For status messages
 
   const handleAvatarChange = (e) => setAvatar(e.target.files[0]);
   const handleBackgroundChange = (e) => setBackgroundImage(e.target.files[0]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user) return alert("User not logged in");
+    if (!user) return setMessage({ type: "error", text: "User not logged in" });
 
     setLoading(true);
+    setMessage(null);
+
     const profileData = new FormData();
     profileData.append("about", about);
     profileData.append("region", region);
@@ -55,12 +57,17 @@ const UserProfileFormFixed = () => {
         body: profileData,
       });
 
-      if (!res.ok) throw new Error("Failed to create profile");
       const result = await res.json();
-      alert(result.message || "Profile created successfully!");
+
+      if (!res.ok) {
+        // Display friendly message if profile already exists
+        setMessage({ type: "error", text: result.message || "Failed to create profile" });
+      } else {
+        setMessage({ type: "success", text: result.message || "Profile created successfully!" });
+      }
     } catch (error) {
       console.error(error);
-      alert(error.message);
+      setMessage({ type: "error", text: "Server error. Try again later." });
     } finally {
       setLoading(false);
     }
@@ -70,6 +77,15 @@ const UserProfileFormFixed = () => {
     <div className="card mx-auto shadow" style={{ maxWidth: "600px" }}>
       <div className="card-body">
         <h2 className="card-title text-center mb-4">User Profile</h2>
+
+        {message && (
+          <div
+            className={`alert ${message.type === "error" ? "alert-danger" : "alert-success"}`}
+            role="alert"
+          >
+            {message.text}
+          </div>
+        )}
 
         {/* Avatar */}
         <div className="d-flex flex-column align-items-center mb-4">
@@ -85,9 +101,6 @@ const UserProfileFormFixed = () => {
             className="form-control my-2"
             onChange={handleAvatarChange}
           />
-          {/* <button type="button" onClick={copyLink} className="btn btn-primary px-4 py-2">
-            Copy Your Profile Link
-          </button> */}
         </div>
 
         {/* Background Image */}
@@ -179,7 +192,7 @@ const UserProfileFormFixed = () => {
 
           <div className="d-flex justify-content-end mt-4">
             <button type="submit" className="btn btn-success" disabled={loading}>
-              {loading ? "Updating..." : "Save Profile"}
+              {loading ? "Saving..." : "Save Profile"}
             </button>
           </div>
         </form>

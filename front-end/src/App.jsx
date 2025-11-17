@@ -76,9 +76,9 @@ function App() {
             path="/orders"
             element={
               <ProtectedRoute>
-                <DashboardLayout>
+                {/* <DashboardLayout> */}
                   <OrdersDashboard />
-                </DashboardLayout>
+                {/* </DashboardLayout> */}
               </ProtectedRoute>
             }
           />

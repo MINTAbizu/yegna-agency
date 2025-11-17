@@ -10,6 +10,8 @@ import digitalProductRoutes from "./route/digitalProduct.route/digitalProduct.ro
 import userregister from "./route/user.route/user.route.js";
 // kyc
 import kycRoutes from './route/kyc/kyc.route.js'
+// profileRoutes
+import profileRoutes from './route/profile.route/profile.route.js'
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -51,6 +53,8 @@ app.use("/api/users", userregister);
 
 // kyc
 app.use("/api/kyc", kycRoutes)
+// // Profile routes
+app.use("/api/profile", profileRoutes);
 
 // Start server
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
