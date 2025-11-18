@@ -3,7 +3,7 @@ import Productlist from './product/Productlist'
 import HorizontalProductList from './HorizontalScrollProducts/HorizontalScrollProducts'
 import Handmadeproduct from './Handmadeproduct/Handmadeproduct'
 import UserExample from './User/UserExample'
-// import RewardsList from './Rewardcard/RewardsList'
+import RewardsList from './Rewardcard/RewardsList'
 import PromotionCarousel from './PromotionCarousel/PromotionCarousel'
 import Home from './Home/Home'
 import Header from './Header/Header'
@@ -13,12 +13,10 @@ import SellSocialMediaAccount from './Shope/userprofilepage/SellSocialMediaAccou
 import OrdersDashboard from './Shope/userprofilepage/OrdersDashboard'
 import ServicesSection from './ServicesSection/ServicesSection'
 import DigitalProductsList from './DigitalProductsList'
-import AdminDigitalProducts from '../Admin/products/AdminDigitalProductsTable'
-import AdminDigitalProductsTable from '../Admin/products/AdminDigitalProductsTable'
-// import AdminDashboard from '../Admin/AdminDashboard'
-// import AdminKYCList from '../Admin/AdminUsersTable/AdminKYCList'
-// import AdminProfileList from '../Admin/AdminUsersTable/AdminProfileList'
-// import OurCustomers from './User/OurCustomers '
+import AdminDashboard from '../Admin/AdminDashboard'
+import AdminKYCList from '../Admin/AdminUsersTable/AdminKYCList'
+import AdminProfileList from '../Admin/AdminUsersTable/AdminProfileList'
+import OurCustomers from './User/OurCustomers '
 
 function Landingpage() {
   return (
@@ -30,24 +28,22 @@ function Landingpage() {
                     <Productlist/>
                     <Handmadeproduct/>
                     <UserExample/>
-                     {/* <RewardsList/>  */}
-                   
+                    <RewardsList/>
+                    
                     <PromotionCarousel/>
                     <ProAccount/>
                     <ServicesSection/>
 
-                     <Footer /> 
+                     <Footer />
                      {/* <SellSocialMediaAccount/>
                      <OrdersDashboard/> */}
                      {/* <DigitalProductsList/> */}
 
-                     {/* <AdminDashboard/>
-                     <AdminKYCList/>
-                     <AdminProfileList/>
-                     <OurCustomers/> */}
-                     {/* <AdminDigitalProductsTable /> */}
-                     {/* <HorizontalProductList/> */}
-             
+                     {/* <AdminDashboard/> */}
+                     {/* <AdminKYCList/> */}
+                     {/* <AdminProfileList/>
+                     <OurCustomers/>
+       */}
     </div>
   ) 
 }

@@ -7,7 +7,7 @@ const ListingsDashboard = () => {
   const [selectedCategory, setSelectedCategory] = useState("Physical Product");
 
   const categories = [
-    { name: "Physical Product", buttonText: "Add Product", link: "/ADDphysicalproducts" },
+    { name: "Physical Product", buttonText: "Add Product", link: "/physicalproduct" },
     { name: "Digital Product", buttonText: "Add Product", link: "/digitalproduct" },
     { name: "Book", buttonText: "Add Book", link: "/addbook" },
     { name: "Social Media Axxount", buttonText: "Add Account", link: "/socialmediaaccount" },

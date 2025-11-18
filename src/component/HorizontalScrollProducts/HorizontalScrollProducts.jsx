@@ -1,57 +1,77 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import './HorizontalScrollProducts.css';
 
-const ProductList = () => {
-  const [digitalProducts, setDigitalProducts] = useState([]);
-  const [physicalProducts, setPhysicalProducts] = useState([]);
+function HorizontalProductList() {
+  const [products, setProducts] = useState([]);
+  const listRef = useRef(null);
+  let lastScroll = 0;
 
+  // Fetch products from backend
   useEffect(() => {
     const fetchProducts = async () => {
-      const digitalRes = await axios.get('http://localhost:5000/api/digital-products/');
-      setDigitalProducts(digitalRes.data.filter(p => p.status === 'approved'));
-
-      const physicalRes = await axios.get('http://localhost:5000/api/physical-products/');
-      setPhysicalProducts(physicalRes.data.filter(p => p.status === 'approved'));
+      try {
+        const res = await axios.get('http://localhost:5000/api/digital-products/');
+        setProducts(res.data);
+      } catch (error) {
+        console.error('Error fetching digital products:', error);
+      }
     };
     fetchProducts();
   }, []);
 
-  return (
-    <div className="container py-4">
-      <h2>Digital Products</h2>
-      <div className="row">
-        {digitalProducts.map(product => (
-          <div key={product._id} className="col-md-3 mb-3">
-            <div className="card">
-              <img src={`http://localhost:5000${product.image}`} alt={product.productName} className="card-img-top"/>
-              <div className="card-body">
-                <h5>{product.productName}</h5>
-                <p>{product.price} ETB</p>
-                <Link to={`/product/${product._id}?type=digital`} className="btn btn-primary">Buy</Link>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+  // Horizontal scroll based on vertical scrolling
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
 
-      <h2 className="mt-4">Physical Products</h2>
-      <div className="row">
-        {physicalProducts.map(product => (
-          <div key={product._id} className="col-md-3 mb-3">
-            <div className="card">
-              <img src={`http://localhost:5000${product.image}`} alt={product.productName} className="card-img-top"/>
-              <div className="card-body">
-                <h5>{product.productName}</h5>
-                <p>{product.price} ETB</p>
-                <Link to={`/product/${product._id}?type=physical`} className="btn btn-primary">Buy</Link>
-              </div>
-            </div>
+      if (!listRef.current) return;
+
+      if (currentScroll > lastScroll) {
+        // Scrolling down → scroll right
+        listRef.current.scrollLeft += 15;
+      } else {
+        // Scrolling up → scroll left
+        listRef.current.scrollLeft -= 15;
+      }
+
+      lastScroll = currentScroll;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  if (!products.length) {
+    return <div className="text-center py-5">No digital products available.</div>;
+  }
+
+  return (
+    <div className="horizontal-product-container">
+      <h2 className='digitalproducttitle'>
+        Digital Products<br />
+        Get your product now!
+      </h2>
+      <p className='digitaldescrption'>
+        Buy or sell any product you can think of. Pick from a catalog of products from Ye-Buna suppliers.
+      </p>
+
+      <div className="horizontal-product-list" ref={listRef}>
+        {products.map((p) => (
+          <div key={p._id} className="product-card">
+            {/* Check if image exists */}
+            {p.image ? (
+              <img src={`http://localhost:5000${p.image}`} alt={p.productName} />
+            ) : (
+              <div className="no-image">No Image</div>
+            )}
+            <h5>{p.productName}</h5>
+            <p className="price">{p.price} ETB</p>
           </div>
         ))}
       </div>
     </div>
   );
-};
+}
 
-export default ProductList;
+export default HorizontalProductList;

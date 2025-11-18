@@ -22,17 +22,7 @@ import AddDigitalProduct from './component/Shope/userprofilepage/AddDigitalProdu
 import AddBook from './component/Shope/userprofilepage/AddBook';
 import SellSocialMediaAccount from './component/Shope/userprofilepage/SellSocialMediaAccount';
 import FullMultiStepKYC from './kyc/FullMultiStepKYC';
-import AdminKYCList from './Admin/AdminUsersTable/AdminKYCList';
-import AdminProfileList from './Admin/AdminUsersTable/AdminProfileList';
-import OurCustomers from './component/User/OurCustomers ';
 import AdminUsersTable from './Admin/AdminUsersTable/AdminUsersTable';
-import AdminDashboard from './Admin/AdminDashboard';
-import AdminDigitalProducts from './Admin/products/AdminDigitalProductsTable';
-import AdminDigitalProductsTable from './Admin/products/AdminDigitalProductsTable';
-import ADDphysicalproducts from './component/Shope/userprofilepage/ADDphysicalproducts';
-import AdminPhysicalproducts from './Admin/products/AdminPhysicalproducts';
-// import AdminUsersTable from './Admin/AdminUsersTable/AdminUsersTable';
-import ProductDetails from './ProductDetails/ProductDetails';
 
 function App() {
   return (
@@ -43,33 +33,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           {/* admin */}
-          <Route path="/AdminUsersTable" element=
-          
-          { 
-             <AdminDashboard>
-          <AdminUsersTable />
-          </AdminDashboard>
-            
-          } />
-          <Route path="/AdminKYCList" element={<AdminKYCList/>} />
-          <Route path="/AdminProfileList" element={<AdminProfileList />} />
-          <Route path="/OurCustomers" element={<OurCustomers />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/admindigitalproducts" element={
-              <AdminDashboard>
-          <AdminDigitalProductsTable />
-        </AdminDashboard>
-            
-            
-            } />   
+          <Route path="/AdminUsersTable" element={<AdminUsersTable />} />
 
-            <Route path="/AdminPhysicalproducts" element={
-              <AdminDashboard>
-          <AdminPhysicalproducts />
-        </AdminDashboard>
-            
-            
-            } />
 
           {/* Protected Routes */}
           <Route
@@ -149,17 +114,7 @@ function App() {
                 </DashboardLayout>
               </ProtectedRoute>
             }
-          />  
-            <Route
-            path="/ADDphysicalproducts"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout>
-                  <ADDphysicalproducts />
-                </DashboardLayout>
-              </ProtectedRoute>
-            }
-          /> 
+          />
 
           <Route
             path="/addbook"

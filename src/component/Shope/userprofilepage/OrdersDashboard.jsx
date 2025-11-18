@@ -86,6 +86,3 @@ const OrdersDashboard = () => {
 };
 
 export default OrdersDashboard;
-
-// 62319811
-// 65232448
