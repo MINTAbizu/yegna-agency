@@ -1,39 +1,34 @@
 import React, { useState } from "react";
-import { FaBars, FaTimes, FaHome, FaList, FaUserShield } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import "./Admin.css";
 import { Link } from "react-router-dom";
 
-const AdminDashboard = ({ children }) => {  // <-- use lowercase 'children'
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+const AdminDashboard = ({ children }) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="admin-container">
+    <div className="admin-layout">
       {/* Header */}
       <header className="admin-header">
-        <button className="menu-btn" onClick={toggleSidebar}>
-          {isSidebarOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+        <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
+          {sidebarOpen ? <FaTimes /> : <FaBars />}
         </button>
-        <h2>Admin Dashboard</h2>
+        <h2 className="admin-logo">Admin Panel</h2>
       </header>
 
       {/* Sidebar */}
-      <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
+      <aside className={`admin-sidebar ${sidebarOpen ? "open" : ""}`}>
         <ul>
-          <li><FaHome /> Dashboard</li>
-          {/* <li><FaList /> Pending Accounts</li> */}
-          <Link to={'/AdminUsersTable'}>
-            <li><FaUserShield /> Admin Users</li>
-          </Link>
-          <Link to={'/AdminKYCList'}><li><FaUserShield /> A KYC List</li></Link>
-          <Link to={'/AdminProfileList'}><li><FaUserShield /> ProfileList</li></Link>
-          <Link to={'/AdminDigitalProductsTable'}><li><FaUserShield /> AdminDigitalProduct</li></Link>
+          <Link to={}><li>Products</li></Link>
+          
+          <li>Users</li>
+          <li>Orders</li>
         </ul>
       </aside>
 
       {/* Main Content */}
       <main className="admin-main">
-        {children}  {/* <-- render children here */}
+        <div className="admin-content">{children}</div>
       </main>
     </div>
   );

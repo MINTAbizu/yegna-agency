@@ -1,127 +1,215 @@
-
-/* AdminDashboard.css */
+/* FULL LAYOUT */
 .admin-container {
   display: flex;
   min-height: 100vh;
-  background: #f5f6fa;
+  background: #f3f4f6;
 }
 
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: #1e1e2f;
+  color: white;
+  padding: 20px 15px;
+  transition: 0.3s ease-in-out;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.sidebar li {
+  padding: 12px 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+
+.sidebar li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* COLLAPSED SIDEBAR */
+.sidebar:not(.open) {
+  width: 70px;
+}
+
+.sidebar:not(.open) li {
+  text-align: center;
+}
+
+/* RIGHT SECTION */
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
 .admin-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 60px;
   background: white;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0 15px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  z-index: 10;
+  padding: 0 20px;
+  gap: 15px;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
 }
 
 .menu-btn {
-  background: none;
   border: none;
-  margin-right: 15px;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
 }
 
-.sidebar {
-  position: fixed;
-  top: 60px;
-  left: 0;
-  width: 230px;
-  background: #ffffff;
-  height: 100%;
-  padding-top: 20px;
-  transition: 0.3s ease;
-  box-shadow: 2px 0px 8px rgba(0,0,0,0.1);
+/* CENTERED MAIN CONTENT */
+.admin-main {
+  padding: 20px;
+  display: flex;
+  justify-content: center;    /* CENTER */
+  align-items: flex-start;
 }
 
-.sidebar.closed {
-  width: 0;
-  overflow: hidden;
+/* CONTENT WRAPPER (CENTERED BOX) */
+.content-wrapper {
+  width: 100%;
+  max-width: 1300px;           /* Centers content */
+  background: white;
+  padding: 25px;
+  margin: 20px 0;
+  border-radius: 12px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
 }
 
-.sidebar ul li {
-  padding: 14px 20px;
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -240px;
+    top: 0;
+    height: 100%;
+    z-index: 999;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .admin-main {
+    padding: 10px;
+  }
+
+  .content-wrapper {
+    padding: 15px;
+    margin: 10px 0;
+  }
+}
+/* GLOBAL LAYOUT */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+  flex-direction: column;
+}
+
+/* HEADER */
+.admin-header {
+  height: 60px;
+  background: white;
   display: flex;
   align-items: center;
-  gap: 10px;
+  padding: 0 20px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.admin-logo {
+  margin-left: 10px;
+  font-weight: bold;
+  color: #4a4a4a;
+}
+
+/* MENU BUTTON (MOBILE) */
+.menu-btn {
+  font-size: 22px;
+  border: none;
+  background: none;
   cursor: pointer;
-  font-weight: 500;
-  color: #333;
+  color: #4a4a4a;
+}
+
+/* SIDEBAR */
+.admin-sidebar {
+  width: 240px;
+  background: white;
+  padding-top: 80px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.08);
+  transform: translateX(-260px);
+  transition: 0.3s ease-in-out;
+  z-index: 40;
+}
+
+.admin-sidebar.open {
+  transform: translateX(0);
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 20px;
+}
+
+.admin-sidebar li {
+  padding: 12px 10px;
+  margin-bottom: 8px;
+  background: #f1f1f1;
+  border-radius: 6px;
+  cursor: pointer;
   transition: 0.2s;
 }
 
-.sidebar ul li:hover {
-  background: #f0f0f0;
+.admin-sidebar li:hover {
+  background: #e0e0e0;
 }
 
-.content-area {
-  margin-left: 230px;
-  padding: 90px 20px;
+/* MAIN CONTENT */
+.admin-main {
+  margin-top: 70px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.admin-content {
   width: 100%;
-  transition: 0.3s;
-}
-
-.sidebar.closed + .content-area {
-  margin-left: 0;
-}
-
-/* Table */
-.responsive-table {
-  overflow-x: auto;
+  max-width: 1100px;
   background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
 }
 
-.approve-btn {
-  background: #28a745;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.reject-btn {
-  background: #dc3545;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .content-area {
-    margin-left: 0;
+/* RESPONSIVE */
+@media (min-width: 900px) {
+  .admin-layout {
+    flex-direction: row;
   }
-}
 
-/* adminKyc.css */
-.admin-kyc-table img {
-  width: 50px;       /* smaller image */
-  height: 50px;
-  object-fit: cover;
-  border-radius: 4px;
-}
+  .admin-sidebar {
+    transform: translateX(0);
+  }
 
-.admin-kyc-table th,
-.admin-kyc-table td {
-  padding: 6px 8px;   /* compact padding for small rows */
-  vertical-align: middle;
-}
-
-.admin-kyc-table {
-  font-size: 0.85rem;  /* slightly smaller text */
+  .admin-main {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+  }
 }
