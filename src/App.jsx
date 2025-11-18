@@ -23,6 +23,10 @@ import AddBook from './component/Shope/userprofilepage/AddBook';
 import SellSocialMediaAccount from './component/Shope/userprofilepage/SellSocialMediaAccount';
 import FullMultiStepKYC from './kyc/FullMultiStepKYC';
 import AdminUsersTable from './Admin/AdminUsersTable/AdminUsersTable';
+import AdminDashboard from './Admin/AdminDashboard';
+import AdminKYCList from './Admin/AdminUsersTable/AdminKYCList';
+import AdminProfileList from './Admin/AdminUsersTable/AdminProfileList';
+import AdminDigitalProductsTable from './Admin/products/AdminDigitalProductsTable';
 
 function App() {
   return (
@@ -114,7 +118,41 @@ function App() {
                 </DashboardLayout>
               </ProtectedRoute>
             }
-          />
+          />  
+                        <Route
+                  path="/AdminKYCList"
+                  element={
+                    <AdminDashboard>
+                      <AdminKYCList />
+                    </AdminDashboard>
+                  }
+                />   
+                      <Route
+                  path="/AdminProfileList"
+                  element={
+                    <AdminDashboard>
+                      <AdminProfileList />
+                    </AdminDashboard>
+                  }
+                />   
+                 <Route
+                  path="/AdminUsersTable"
+                  element={
+                    <AdminDashboard>
+                      <AdminUsersTable />
+                    </AdminDashboard>
+                  }
+                />    
+                 <Route
+                  path="/AdminDigitalProductsTable"
+                  element={
+                    <AdminDashboard>
+                      <AdminDigitalProductsTable />
+                    </AdminDashboard>
+                  }
+                /> 
+
+          
 
           <Route
             path="/addbook"
