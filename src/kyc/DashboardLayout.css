@@ -1,0 +1,91 @@
+/* Wrapper layout */
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #f8f9fa;
+  overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  height: 100vh;
+  background: white;
+  border-right: 1px solid #e5e5e5;
+  padding: 15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 999;
+}
+
+/* Sidebar hidden on mobile */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Default: hide sidebar on mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+}
+
+/* Sidebar overlay for mobile */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* Mobile header */
+.mobile-header {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+/* Desktop header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+/* Notification dot */
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+/* Smooth scroll */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #d3d3d3;
+  border-radius: 10px;
+}

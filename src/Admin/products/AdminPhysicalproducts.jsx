@@ -1,0 +1,188 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+const AdminPhysicalproducts = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/physical-products/");
+      setProducts(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleToggleStatus = async (id) => {
+    try {
+      await axios.patch(`http://localhost:5000/api/physical-products/toggle-status/${id}`);
+      
+      setProducts((prev) =>
+        prev.map((p) =>
+          p._id === id
+            ? { ...p, status: p.status === "approved" ? "rejected" : "approved" }
+            : p
+        )
+      );
+    } catch (err) {
+      console.error("Toggle Status Error:", err);
+    }
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (!products.length) return <p>No physical products found.</p>;
+
+  return (
+    <div className="container py-4">
+      <h3 className="mb-3">Physical Products</h3>
+
+      <div className="table-responsive">
+        <table className="table table-sm table-striped table-hover align-middle">
+          <thead className="table-dark">
+            <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Links</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {products.map((p, i) => (
+              <tr key={p._id}>
+                <td>{i + 1}</td>
+
+                {/* Image */}
+                <td>
+                  {p.image && (
+                    <img
+                      src={`http://localhost:5000${p.image}`}
+                      alt={p.productName}
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        objectFit: "cover",
+                        borderRadius: "6px",
+                      }}
+                    />
+                  )}
+                </td>
+
+                {/* Basic info */}
+                <td>{p.productName}</td>
+                <td>{p.price} ETB</td>
+
+                {/* Links Section */}
+                <td style={{ fontSize: "12px" }}>
+
+                  {/* Telegram */}
+                  {p.telegram && (
+                    <div>
+                      <a
+                        href={
+                          p.telegram.startsWith("http")
+                            ? p.telegram
+                            : `https://t.me/${p.telegram}`
+                        }
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Telegram
+                      </a>
+                    </div>
+                  )}
+
+                  {/* Drive */}
+                  {p.drive && (
+                    <div>
+                      <a href={p.drive} target="_blank" rel="noreferrer">
+                        Drive
+                      </a>
+                    </div>
+                  )}
+
+                  {/* Dropbox */}
+                  {p.dropbox && (
+                    <div>
+                      <a href={p.dropbox} target="_blank" rel="noreferrer">
+                        Dropbox
+                      </a>
+                    </div>
+                  )}
+
+                  {/* Other Link */}
+                  {p.productLink && (
+                    <div>
+                      <a href={p.productLink} target="_blank" rel="noreferrer">
+                        Other
+                      </a>
+                    </div>
+                  )}
+                </td>
+
+                {/* Status */}
+                <td>
+                  <span
+                    className={`badge ${
+                      p.status === "approved"
+                        ? "bg-success"
+                        : p.status === "rejected"
+                        ? "bg-danger"
+                        : "bg-secondary"
+                    }`}
+                  >
+                    {p.status}
+                  </span>
+                </td>
+
+                {/* Action Buttons */}
+                <td>
+                  {p.status === "pending" ? (
+                    <>
+                      <button
+                        className="btn btn-sm btn-success me-1"
+                        onClick={() => handleToggleStatus(p._id)}
+                      >
+                        Approve
+                      </button>
+
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={() => handleToggleStatus(p._id)}
+                      >
+                        Reject
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      className={`btn btn-sm ${
+                        p.status === "approved" ? "btn-danger" : "btn-success"
+                      }`}
+                      onClick={() => handleToggleStatus(p._id)}
+                    >
+                      {p.status === "approved" ? "Reject" : "Approve"}
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default AdminPhysicalproducts;

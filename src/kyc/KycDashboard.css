@@ -1,0 +1,58 @@
+.dashboard-wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+}
+
+.sidebar-link {
+  display: block;
+  color: #333;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.sidebar-link:hover {
+  background-color: #e7f1ff;
+}
+
+.main-content {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.header {
+  height: 60px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
