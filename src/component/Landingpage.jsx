@@ -39,7 +39,7 @@ function Landingpage() {
                      <OrdersDashboard/> */}
                      {/* <DigitalProductsList/> */}
 
-                     <AdminDashboard/>
+                     {/* <AdminDashboard/> */}
                      {/* <AdminKYCList/> */}
                      {/* <AdminProfileList/>
                      <OurCustomers/>

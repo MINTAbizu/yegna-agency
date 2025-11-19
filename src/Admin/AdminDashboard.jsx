@@ -19,10 +19,13 @@ const AdminDashboard = ({ children }) => {
       {/* Sidebar */}
       <aside className={`admin-sidebar ${sidebarOpen ? "open" : ""}`}>
         <ul>
-          <Link to={}><li>Products</li></Link>
+          <Link to={'/AdminKYCList'}><li>AdminKYCList</li></Link>
+          <Link to={'/AdminProfileList'}><li>AdminProfileList</li></Link>
+          <Link to={'/AdminUsersTable'}><li>AdminUsersTable</li></Link>
+          <Link to={'/AdminDigitalProductsTable'}><li>AdminDigitalProductsTable</li></Link>
+          <Link to={'/AdminPhysicalproducts'}><li>AdminPhysicalproducts</li></Link>
           
-          <li>Users</li>
-          <li>Orders</li>
+          
         </ul>
       </aside>
 

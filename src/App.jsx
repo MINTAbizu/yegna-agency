@@ -27,6 +27,7 @@ import AdminDashboard from './Admin/AdminDashboard';
 import AdminKYCList from './Admin/AdminUsersTable/AdminKYCList';
 import AdminProfileList from './Admin/AdminUsersTable/AdminProfileList';
 import AdminDigitalProductsTable from './Admin/products/AdminDigitalProductsTable';
+import AdminPhysicalproducts from './Admin/products/AdminPhysicalproducts';
 
 function App() {
   return (
@@ -150,7 +151,15 @@ function App() {
                       <AdminDigitalProductsTable />
                     </AdminDashboard>
                   }
-                /> 
+                />  
+                 <Route
+                  path="/AdminPhysicalproducts"
+                  element={
+                    <AdminDashboard>
+                      <AdminPhysicalproducts />
+                    </AdminDashboard>
+                  }
+                />
 
           
 
