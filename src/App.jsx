@@ -19,6 +19,8 @@ import OrdersDashboard from './component/Shope/userprofilepage/OrdersDashboard';
 import ListingsDashboard from './component/Shope/userprofilepage/ListingsDashboard';
 import AffiliateOrders from './component/Shope/userprofilepage/AffiliateOrders';
 import AddDigitalProduct from './component/Shope/userprofilepage/AddDigitalProduct';
+import ADDphysicalproducts from './component/Shope/userprofilepage/ADDphysicalproducts';
+
 import AddBook from './component/Shope/userprofilepage/AddBook';
 import SellSocialMediaAccount from './component/Shope/userprofilepage/SellSocialMediaAccount';
 import FullMultiStepKYC from './kyc/FullMultiStepKYC';
@@ -28,6 +30,7 @@ import AdminKYCList from './Admin/AdminUsersTable/AdminKYCList';
 import AdminProfileList from './Admin/AdminUsersTable/AdminProfileList';
 import AdminDigitalProductsTable from './Admin/products/AdminDigitalProductsTable';
 import AdminPhysicalproducts from './Admin/products/AdminPhysicalproducts';
+import ProductDetails from './ProductDetails/ProductDetails';
 
 function App() {
   return (
@@ -37,6 +40,8 @@ function App() {
           <Route path="/" element={<Landingpage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+         <Route path="/ProductDetails/:id" element={<ProductDetails />} />
+
           {/* admin */}
           <Route path="/AdminUsersTable" element={<AdminUsersTable />} />
 
@@ -116,6 +121,16 @@ function App() {
               <ProtectedRoute>
                 <DashboardLayout>
                   <AddDigitalProduct />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />  
+            <Route
+            path="/ADDphysicalproducts"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <ADDphysicalproducts />
                 </DashboardLayout>
               </ProtectedRoute>
             }

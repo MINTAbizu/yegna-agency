@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import './HorizontalScrollProducts.css';
+import {Link} from 'react-router-dom'
 
 function HorizontalProductList() {
   const [products, setProducts] = useState([]);
@@ -67,6 +68,9 @@ function HorizontalProductList() {
             )}
             <h5>{p.productName}</h5>
             <p className="price">{p.price} ETB</p>
+            <Link to={`/ProductDetails/${p._id}?type=digital`}>
+  <button>Buy</button>
+</Link>
           </div>
         ))}
       </div>

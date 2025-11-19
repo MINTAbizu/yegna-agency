@@ -12,7 +12,7 @@ const AdminDigitalProductsTable = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/digital-products/");
+      const res = await axios.get("http://localhost:5000/api/digital-products/Admin");
       setProducts(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error(err);

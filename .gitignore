@@ -22,3 +22,24 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Do not track uploaded or generated files
+backend/uploads/
+backend/assets/
+front-end/src/assets/uploads/
+front-end/public/uploads/
+*.jfif
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+# Ignore all uploaded/generated files
+backend/uploads/
+backend/assets/
+backend/tmp/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.jfif
+*.webp
