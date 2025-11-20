@@ -62,9 +62,25 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     setUser(null);
   };
+  // Authcontext.jsx
+const refreshUser = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  try {
+    const res = await axios.get("http://localhost:5000/api/users/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setUser(res.data);
+  } catch (err) {
+    console.error(err);
+    setUser(null);
+  }
+};
+
 
   return (
-    <AuthContext.Provider value={{ user, loading, register, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, register, login, logout,refreshUser }}>
       {children}
     </AuthContext.Provider>
   );

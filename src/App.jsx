@@ -24,6 +24,7 @@ import ADDphysicalproducts from './component/Shope/userprofilepage/ADDphysicalpr
 import AddBook from './component/Shope/userprofilepage/AddBook';
 import SellSocialMediaAccount from './component/Shope/userprofilepage/SellSocialMediaAccount';
 import FullMultiStepKYC from './kyc/FullMultiStepKYC';
+import ShopPage from './kyc/ShopPage';
 import AdminUsersTable from './Admin/AdminUsersTable/AdminUsersTable';
 import AdminDashboard from './Admin/AdminDashboard';
 import AdminKYCList from './Admin/AdminUsersTable/AdminKYCList';
@@ -31,6 +32,7 @@ import AdminProfileList from './Admin/AdminUsersTable/AdminProfileList';
 import AdminDigitalProductsTable from './Admin/products/AdminDigitalProductsTable';
 import AdminPhysicalproducts from './Admin/products/AdminPhysicalproducts';
 import ProductDetails from './ProductDetails/ProductDetails';
+
 
 function App() {
   return (
@@ -40,7 +42,13 @@ function App() {
           <Route path="/" element={<Landingpage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-         <Route path="/ProductDetails/:id" element={<ProductDetails />} />
+          <Route path="/dashboard" element={<DashboardLayout><h2>Dashboard Home</h2></DashboardLayout>} />
+          <Route path="/orders" element={<ShopPage />} />
+         <Route path="/ProductDetails/:id" element={
+          <ProtectedRoute>
+          <ProductDetails />
+          </ProtectedRoute>
+          } />
 
           {/* admin */}
           <Route path="/AdminUsersTable" element={<AdminUsersTable />} />
@@ -85,11 +93,11 @@ function App() {
           <Route
             path="/orders"
             element={
-              <ProtectedRoute>
-                {/* <DashboardLayout> */}
+              
+                
                   <OrdersDashboard />
-                {/* </DashboardLayout> */}
-              </ProtectedRoute>
+                
+              
             }
           />
 

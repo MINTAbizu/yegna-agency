@@ -6,33 +6,53 @@ const AdminDigitalProductsTable = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch all digital products from backend
+
+
+const fetchProducts = async () => {
+  try {
+    const token = localStorage.getItem("adminToken");
+    const res = await axios.get(
+      "http://localhost:5000/api/digital-products/admin/all",
+      {
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+      }
+    );
+
+    const productsArray = Array.isArray(res.data) ? res.data : [];
+
+    // Sort newest first
+    productsArray.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    setProducts(productsArray);
+  } catch (err) {
+    console.error("Fetch Products Error:", err);
+  } finally {
+    setLoading(false);
+  }
+};
+
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  const fetchProducts = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/api/digital-products/Admin");
-      setProducts(Array.isArray(res.data) ? res.data : []);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Toggle product status
   const handleToggleStatus = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/api/digital-products/toggle-status/${id}`);
-      setProducts((prev) =>
-        prev.map((p) =>
-          p._id === id
-            ? { ...p, status: p.status === "approved" ? "rejected" : "approved" }
-            : p
-        )
+      const token = localStorage.getItem("adminToken"); // or userToken
+      await axios.patch(
+        `http://localhost:5000/api/digital-products/admin/toggle/${id}`,
+        {},
+        {
+          headers: token
+            ? { Authorization: `Bearer ${token}` }
+            : undefined,
+        }
       );
+      // Refetch products to reflect the updated status
+      fetchProducts();
     } catch (err) {
-      console.error(err);
+      console.error("Toggle Status Error:", err);
     }
   };
 
@@ -64,32 +84,81 @@ const AdminDigitalProductsTable = () => {
                     <img
                       src={`http://localhost:5000${p.image}`}
                       alt={p.productName}
-                      style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "6px" }}
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        objectFit: "cover",
+                        borderRadius: "6px",
+                      }}
                     />
                   )}
                 </td>
                 <td>{p.productName}</td>
                 <td>{p.price} ETB</td>
                 <td style={{ fontSize: "12px" }}>
-                  {p.telegram && <div><a href={p.telegram} target="_blank" rel="noreferrer">Telegram</a></div>}
-                  {p.drive && <div><a href={p.drive} target="_blank" rel="noreferrer">Drive</a></div>}
-                  {p.dropbox && <div><a href={p.dropbox} target="_blank" rel="noreferrer">Dropbox</a></div>}
-                  {p.productLink && <div><a href={p.productLink} target="_blank" rel="noreferrer">Other</a></div>}
+                  {p.telegram && (
+                    <div>
+                      <a href={p.telegram} target="_blank" rel="noreferrer">
+                        Telegram
+                      </a>
+                    </div>
+                  )}
+                  {p.drive && (
+                    <div>
+                      <a href={p.drive} target="_blank" rel="noreferrer">
+                        Drive
+                      </a>
+                    </div>
+                  )}
+                  {p.dropbox && (
+                    <div>
+                      <a href={p.dropbox} target="_blank" rel="noreferrer">
+                        Dropbox
+                      </a>
+                    </div>
+                  )}
+                  {p.productLink && (
+                    <div>
+                      <a href={p.productLink} target="_blank" rel="noreferrer">
+                        Other
+                      </a>
+                    </div>
+                  )}
                 </td>
                 <td>
-                  <span className={`badge ${p.status === "approved" ? "bg-success" : p.status === "rejected" ? "bg-danger" : "bg-secondary"}`}>
+                  <span
+                    className={`badge ${
+                      p.status === "approved"
+                        ? "bg-success"
+                        : p.status === "rejected"
+                        ? "bg-danger"
+                        : "bg-secondary"
+                    }`}
+                  >
                     {p.status}
                   </span>
                 </td>
                 <td>
                   {p.status === "pending" ? (
                     <>
-                      <button className="btn btn-sm btn-success me-1" onClick={() => handleToggleStatus(p._id)}>Approve</button>
-                      <button className="btn btn-sm btn-danger" onClick={() => handleToggleStatus(p._id)}>Reject</button>
+                      <button
+                        className="btn btn-sm btn-success me-1"
+                        onClick={() => handleToggleStatus(p._id)}
+                      >
+                        Approve
+                      </button>
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={() => handleToggleStatus(p._id)}
+                      >
+                        Reject
+                      </button>
                     </>
                   ) : (
                     <button
-                      className={`btn btn-sm ${p.status === "approved" ? "btn-danger" : "btn-success"}`}
+                      className={`btn btn-sm ${
+                        p.status === "approved" ? "btn-danger" : "btn-success"
+                      }`}
                       onClick={() => handleToggleStatus(p._id)}
                     >
                       {p.status === "approved" ? "Reject" : "Approve"}

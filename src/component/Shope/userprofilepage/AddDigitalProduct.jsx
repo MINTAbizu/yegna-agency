@@ -32,9 +32,23 @@ const AddDigitalProduct = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/digital-products/create", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const token = localStorage.getItem("token"); // JWT from login
+      if (!token) {
+        alert("You must be logged in to add a product");
+        return;
+      }
+
+      const res = await axios.post(
+        "http://localhost:5000/api/digital-products/create",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
       alert("Digital Product Added Successfully!");
       setFormData({
         productName: "",
@@ -48,7 +62,7 @@ const AddDigitalProduct = () => {
       });
     } catch (error) {
       console.error(error);
-      alert("Error adding product!");
+      alert(error.response?.data?.message || "Error adding product!");
     }
   };
 
@@ -57,69 +71,15 @@ const AddDigitalProduct = () => {
       <div className="card shadow-sm p-4" style={{ width: "400px" }}>
         <h4 className="card-title mb-4 text-center">Add Digital Product</h4>
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label">Product Name</label>
-            <input
-              type="text"
-              name="productName"
-              className="form-control"
-              value={formData.productName}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Price</label>
-            <input
-              type="number"
-              name="price"
-              className="form-control"
-              value={formData.price}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Description</label>
-            <textarea
-              name="description"
-              className="form-control"
-              rows="3"
-              value={formData.description}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Image</label>
-            <input
-              type="file"
-              name="image"
-              className="form-control"
-              onChange={handleChange}
-              accept="image/png, image/jpeg"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Telegram Link</label>
-            <input type="text" name="telegram" className="form-control" value={formData.telegram} onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Google Drive Link</label>
-            <input type="text" name="drive" className="form-control" value={formData.drive} onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Dropbox Link</label>
-            <input type="text" name="dropbox" className="form-control" value={formData.dropbox} onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Product Link</label>
-            <input type="url" name="productLink" className="form-control" value={formData.productLink} onChange={handleChange} />
-          </div>
-          <button type="submit" className="btn btn-success w-100">
-            Add Product
-          </button>
+          <input type="text" name="productName" placeholder="Product Name" onChange={handleChange} required className="form-control mb-2" />
+          <input type="number" name="price" placeholder="Price" onChange={handleChange} required className="form-control mb-2" />
+          <textarea name="description" placeholder="Description" onChange={handleChange} required className="form-control mb-2" />
+          <input type="file" name="image" onChange={handleChange} accept="image/*" required className="form-control mb-2" />
+          <input type="text" name="telegram" placeholder="Telegram Link" onChange={handleChange} className="form-control mb-2" />
+          <input type="text" name="drive" placeholder="Drive Link" onChange={handleChange} className="form-control mb-2" />
+          <input type="text" name="dropbox" placeholder="Dropbox Link" onChange={handleChange} className="form-control mb-2" />
+          <input type="url" name="productLink" placeholder="Product Link" onChange={handleChange} className="form-control mb-2" />
+          <button type="submit" className="btn btn-success w-100">Add Product</button>
         </form>
       </div>
     </div>
